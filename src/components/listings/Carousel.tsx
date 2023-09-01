@@ -15,10 +15,6 @@ export default function Carousel() {
     queryFn: () => fetchData(link),
   });
 
-  if (!data?.results || data.results.length === 0) {
-    return <div>No movies available</div>;
-  }
-
   return (
     <Container>
       <section className="flex flex-col gap-3 rounded-lg">

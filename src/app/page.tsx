@@ -4,7 +4,7 @@ import Carousel from "@/components/listings/Carousel";
 export default function Home() {
   return (
     <main>
-      {/* <Banner /> */}
+      <Banner />
       <Carousel />
     </main>
   );

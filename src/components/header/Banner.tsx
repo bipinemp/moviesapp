@@ -7,6 +7,8 @@ import { useQuery } from "@tanstack/react-query";
 import Container from "../Container";
 import PosterFallback from "@/assets/no-poster.png";
 import BannerItem from "./BannerItem";
+import { Suspense } from "react";
+import BannerLoading from "../loading/BannerLoading";
 
 export default function Banner() {
   const { data } = useQuery<BannerType>({
@@ -14,24 +16,27 @@ export default function Banner() {
     queryFn: () => fetchData(upcoming),
   });
 
-  if (!data?.results || data.results.length === 0) {
-    return <div>No movies available</div>;
-  }
-
-  const randomIndex = Math.floor(Math.random() * data?.results.length);
-  const selectedBanner = data?.results[randomIndex];
-  let url = image;
+  let selectedBanner;
   let bannerUrl;
-  if (selectedBanner.backdrop_path !== "") {
-    bannerUrl = url + selectedBanner.backdrop_path;
+
+  if (data && data.results && data.results.length > 0) {
+    const randomIndex = Math.floor(Math.random() * data.results.length);
+    selectedBanner = data.results[randomIndex];
+    const url = image;
+    bannerUrl = selectedBanner.backdrop_path
+      ? url + selectedBanner.backdrop_path
+      : PosterFallback;
   } else {
+    selectedBanner = null;
     bannerUrl = PosterFallback;
   }
 
   return (
     <Container>
       {data && data.results && selectedBanner && (
-        <BannerItem selectedBanner={selectedBanner} bannerUrl={bannerUrl} />
+        <Suspense fallback={<BannerLoading />}>
+          <BannerItem selectedBanner={selectedBanner} bannerUrl={bannerUrl} />
+        </Suspense>
       )}
     </Container>
   );

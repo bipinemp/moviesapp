@@ -25,5 +25,8 @@
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2",
     "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "@tanstack/react-query-devtools": "^4.33.0"
   }
 }
