@@ -7,17 +7,20 @@ import { useQuery } from "@tanstack/react-query";
 import Container from "../Container";
 import PosterFallback from "@/assets/no-poster.png";
 import BannerItem from "./BannerItem";
-import { Suspense } from "react";
 import BannerLoading from "../loading/BannerLoading";
 
 export default function Banner() {
-  const { data } = useQuery<BannerType>({
+  const { data, isLoading } = useQuery<BannerType>({
     queryKey: ["banner"],
     queryFn: () => fetchData(upcoming),
   });
 
   let selectedBanner;
   let bannerUrl;
+
+  if (isLoading) {
+    return <BannerLoading />;
+  }
 
   if (data && data.results && data.results.length > 0) {
     const randomIndex = Math.floor(Math.random() * data.results.length);
@@ -34,9 +37,7 @@ export default function Banner() {
   return (
     <Container>
       {data && data.results && selectedBanner && (
-        <Suspense fallback={<BannerLoading />}>
-          <BannerItem selectedBanner={selectedBanner} bannerUrl={bannerUrl} />
-        </Suspense>
+        <BannerItem selectedBanner={selectedBanner} bannerUrl={bannerUrl} />
       )}
     </Container>
   );

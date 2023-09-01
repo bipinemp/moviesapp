@@ -3,7 +3,7 @@ import Carousel from "@/components/listings/Carousel";
 
 export default function Home() {
   return (
-    <main>
+    <main className="mb-10">
       <Banner />
       <Carousel />
     </main>
