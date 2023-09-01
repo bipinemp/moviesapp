@@ -1,5 +1,5 @@
-export function Trending(type: string) {
-  return `/trending/${type}/day?language=en-US`;
+export function Trending(type: string, format: string) {
+  return `/trending/${type}/${format}?language=en-US`;
 }
 
 export const trendingBanner = "/trending/all/day?language=en-US";

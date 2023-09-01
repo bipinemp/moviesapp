@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
 import CarouselImage from "./CarouselImage";
 import { Suspense } from "react";
-import PosterLoading from "../loading/PosterLoading";
+import PosterLoading from "../../loading/PosterLoading";
 
 export default function CarouselItem({
   posterUrl,

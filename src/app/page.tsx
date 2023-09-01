@@ -1,11 +1,11 @@
 import Banner from "@/components/header/Banner";
-import Carousel from "@/components/listings/Carousel";
+import TrendingList from "@/components/listings/TrendingList";
 
 export default function Home() {
   return (
     <main className="mb-10">
       <Banner />
-      <Carousel />
+      <TrendingList />
     </main>
   );
 }
