@@ -17,7 +17,7 @@ export default function Carousel() {
 
   return (
     <Container>
-      <section className="flex flex-col gap-3 rounded-lg">
+      <section className="flex flex-col gap-3 rounded-lg text-light">
         <h1 className="font-bold text-2xl opacity-80 tracking-wide">
           Trending
         </h1>
