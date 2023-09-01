@@ -35,13 +35,14 @@ export default function TrendingList() {
           <h1 className="font-bold text-2xl opacity-80 tracking-wide  text-light">
             Trending
           </h1>
-          <div className="relative transition-all ease-in-out duration-300 flex gap-3 p-1 border-[2px] border-white rounded-full">
+          <div className="relative flex gap-3 p-1 border-[2px] border-white rounded-full">
             <span
-              className={`w-[100px] h-full absolute ${
-                active === "day" ? "left-0" : "right-0"
-              } top-0 bg-blue-500 rounded-full z-0`}
+              className={`w-[48%] h-full absolute ${
+                active === "day" ? "translate-x-0" : "translate-x-full"
+              } transition duration-200 ease-in-out top-0 bg-darkprimary rounded-full z-0`}
             ></span>
             <button
+              type="button"
               onClick={(e) => {
                 e.preventDefault();
                 handleClick("day");
@@ -53,6 +54,7 @@ export default function TrendingList() {
               Day
             </button>
             <button
+              type="button"
               onClick={(e) => {
                 e.preventDefault();
                 handleClick("week");
