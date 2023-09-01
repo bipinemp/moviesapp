@@ -11,8 +11,8 @@ export default async function CarouselImage({
         src={posterUrl}
         alt="movie_tvshow_poster"
         width={150}
-        height={120}
-        className="object-contain rounded-lg cursor-pointer bg-indigo-200"
+        height={200}
+        className="rounded-lg cursor-pointer bg-indigo-200"
       />
     </>
   );
