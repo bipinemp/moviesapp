@@ -19,7 +19,7 @@ export default function BannerItem({
           {selectedBanner.title}
         </h1>
         <p className="text-light text-sm">
-          {selectedBanner.overview.substring(0, 200)} ...
+          {selectedBanner.overview.substring(0, 200)}...
         </p>
         <button
           type="button"
@@ -29,7 +29,6 @@ export default function BannerItem({
         </button>
       </div>
       <BannerImage bannerUrl={bannerUrl} />
-      <span className="w-[50%] h-full bg-black/30 blur-lg absolute top-0 z-0"></span>
     </div>
   );
 }

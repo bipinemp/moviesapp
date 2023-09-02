@@ -6,7 +6,7 @@ import PosterLoading from "../../loading/PosterLoading";
 export default function CarouselItem({
   posterUrl,
 }: {
-  posterUrl: string | StaticImageData;
+  posterUrl: StaticImageData | string;
 }) {
   return (
     <>
