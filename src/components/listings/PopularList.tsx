@@ -30,7 +30,7 @@ export default function PopularList() {
 
   return (
     <Container>
-      <section className="flex h-[48vh] flex-col gap-3 rounded-lg mt-10">
+      <section className="flex h-[310px] flex-col gap-3 rounded-lg mt-10">
         <div className="flex justify-between">
           <h1 className="font-bold text-2xl opacity-80 tracking-wide  text-light">
             What&apos;s Popular

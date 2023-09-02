@@ -10,6 +10,13 @@ body {
 li {
   cursor: pointer;
 }
+a {
+  transition: all 150ms linear;
+}
+a:hover {
+  text-decoration: underline;
+  color: black;
+}
 
 .no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
