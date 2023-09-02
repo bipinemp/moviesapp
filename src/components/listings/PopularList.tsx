@@ -33,7 +33,7 @@ export default function PopularList() {
       <section className="flex flex-col gap-3 rounded-lg mt-16">
         <div className="flex justify-between">
           <h1 className="font-bold text-2xl opacity-80 tracking-wide  text-light">
-            What's Popular
+            What&apos;s Popular
           </h1>
           <div className="relative flex gap-3 p-1 border-[2px] border-white rounded-full">
             <span
