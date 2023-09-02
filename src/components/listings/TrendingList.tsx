@@ -13,7 +13,7 @@ export default function TrendingList() {
 
   const link: string = Trending("movie", active);
   const { data } = useQuery<ApiResponse>({
-    queryKey: ["lists", link],
+    queryKey: ["lists", active],
     queryFn: () => fetchData(link),
   });
 
@@ -30,7 +30,7 @@ export default function TrendingList() {
 
   return (
     <Container>
-      <section className="flex flex-col gap-3 rounded-lg mt-16">
+      <section className="flex h-[48vh] flex-col gap-3 rounded-lg mt-16">
         <div className="flex justify-between">
           <h1 className="font-bold text-2xl opacity-80 tracking-wide  text-light">
             Trending
