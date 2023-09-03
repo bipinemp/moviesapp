@@ -27,5 +27,13 @@ export function VideoFn(type: string | number, id: number | string) {
   return `/${type}/${id}/videos`;
 }
 
+export function SimilarFn(type: string | number, id: number | string) {
+  return `/${type}/${id}/similar`;
+}
+
+export function RecommendationFn(type: string | number, id: number | string) {
+  return `/${type}/${id}/recommendations`;
+}
+
 // /mediatype/id/videos
 // /mediatype/id/credits

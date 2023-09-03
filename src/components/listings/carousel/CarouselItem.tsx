@@ -11,7 +11,7 @@ export default function CarouselItem({
 }: {
   posterUrl: StaticImageData | string;
   id: number | string;
-  mediaType: string;
+  mediaType?: string | undefined;
   media: string;
 }) {
   return (

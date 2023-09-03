@@ -27,7 +27,7 @@ export interface Movie {
   backdrop_path: string;
   poster_path: string;
   id: number;
-  media_type: string;
+  media_type?: string;
 }
 
 export interface TVShow {
@@ -36,7 +36,7 @@ export interface TVShow {
   backdrop_path: string;
   poster_path: string;
   id: number;
-  media_type: string;
+  media_type?: string;
 }
 
 export interface ApiResponse {
@@ -109,4 +109,21 @@ export interface Video {
   site: string;
   size: number;
   type: string;
+}
+
+// Similar types and Recommendation types are same :)
+export interface SimilarType {
+  page: number;
+  results: Similar[];
+  total_pages: number;
+  total_results: number;
+}
+
+export interface Similar {
+  id: number;
+  backdrop_path: string;
+  poster_path: string;
+  title: string;
+  original_title: string;
+  media_type?: string;
 }

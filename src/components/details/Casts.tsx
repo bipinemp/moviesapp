@@ -9,7 +9,17 @@ export default function Casts({
   loading: boolean;
 }) {
   if (loading) {
-    return <p>loading...</p>;
+    return (
+      <div className="flex gap-10">
+        <div className="bg-gray-500 w-[110px] h-[120px] rounded-full animate-pulse"></div>
+        <div className="bg-gray-500 w-[110px] h-[120px] rounded-full animate-pulse"></div>
+        <div className="bg-gray-500 w-[110px] h-[120px] rounded-full animate-pulse"></div>
+        <div className="bg-gray-500 w-[110px] h-[120px] rounded-full animate-pulse"></div>
+        <div className="bg-gray-500 w-[110px] h-[120px] rounded-full animate-pulse"></div>
+        <div className="bg-gray-500 w-[110px] h-[120px] rounded-full animate-pulse"></div>
+        <div className="bg-gray-500 w-[110px] h-[120px] rounded-full animate-pulse"></div>
+      </div>
+    );
   }
   return (
     <div className="flex overflow-x-auto no-scrollbar border-l-[1px] border-light pl-2">

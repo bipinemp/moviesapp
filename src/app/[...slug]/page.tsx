@@ -1,9 +1,19 @@
 "use client";
 
 import Container from "@/components/containers/Container";
-import { CastType, DetailsResponse, VideoType } from "@/types/types";
+import {
+  CastType,
+  DetailsResponse,
+  SimilarType,
+  VideoType,
+} from "@/types/types";
 import { fetchData } from "@/utils/apis/queries";
-import { VideoFn, image } from "@/utils/resource/links";
+import {
+  RecommendationFn,
+  SimilarFn,
+  VideoFn,
+  image,
+} from "@/utils/resource/links";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
@@ -12,6 +22,9 @@ import Crews from "@/components/details/Crews";
 import Casts from "@/components/details/Casts";
 import DetailsLoading from "@/components/loading/DetailsLoading";
 import Videos from "@/components/videos/Videos";
+import Similar from "@/components/details/Similar";
+import Recommedation from "@/components/details/Recommedation";
+import PosterFallback from "@/assets/no-poster.png";
 
 export default function Page({
   params,
@@ -44,12 +57,34 @@ export default function Page({
   });
 
   const videolink: string = VideoFn(media, id);
-
-  const { data: VideosData, isLoading: videosLoading } = useQuery<VideoType>({
+  const {
+    data: VideosData,
+    isLoading: videosLoading,
+    isSuccess: VideosSuccess,
+  } = useQuery<VideoType>({
     queryKey: ["videos", params.slug[1]],
     enabled: castsSuccess,
     queryFn: () => fetchData(videolink),
   });
+
+  const similarlink: string = SimilarFn(media, id);
+  const {
+    data: SimilarData,
+    isLoading: similarLoading,
+    isSuccess: SimilarSuccess,
+  } = useQuery<SimilarType>({
+    queryKey: ["similar", params.slug[1]],
+    enabled: VideosSuccess,
+    queryFn: () => fetchData(similarlink),
+  });
+
+  const recommendationlink: string = RecommendationFn(media, id);
+  const { data: RecommendationData, isLoading: recommendationLoading } =
+    useQuery<SimilarType>({
+      queryKey: ["recommendation", params.slug[1]],
+      enabled: SimilarSuccess,
+      queryFn: () => fetchData(recommendationlink),
+    });
 
   if (isLoading) {
     return <DetailsLoading />;
@@ -80,7 +115,11 @@ export default function Page({
         <section className="mt-10 flex justify-center gap-10">
           <div className="relative w-[30%]">
             <Image
-              src={`${image}/${data?.poster_path}`}
+              src={
+                data?.poster_path !== null
+                  ? `${image}/${data?.poster_path}`
+                  : PosterFallback
+              }
               alt="poster image"
               fill
               loading="lazy"
@@ -127,10 +166,16 @@ export default function Page({
             </div>
 
             <div className="flex flex-col gap-2">
-              <h1 className="text-xl font-medium tracking-wide">Overview</h1>
-              <p className="text-[0.8rem] text-light tracking-wide">
-                {data?.overview}
-              </p>
+              {data?.overview ? (
+                <>
+                  <h1 className="text-xl font-medium tracking-wide">
+                    Overview
+                  </h1>
+                  <p className="text-[0.8rem] text-light tracking-wide">
+                    {data?.overview}
+                  </p>
+                </>
+              ) : null}
             </div>
 
             <div className="flex justify-between items-center border-b-[1px] pb-2 border-light">
@@ -161,9 +206,23 @@ export default function Page({
           <h1 className="text-lg tracking-wider font-semibold">Top Casts :</h1>
           <Casts data={CastsCrews} loading={castsLoading} />
         </section>
-
         <section>
           <Videos vidData={VideosData} loading={videosLoading} />
+        </section>
+        <section>
+          <Similar
+            media={String(params.slug[0])}
+            data={SimilarData}
+            loading={similarLoading}
+          />
+        </section>
+
+        <section>
+          <Recommedation
+            media={String(params.slug[0])}
+            data={RecommendationData}
+            loading={recommendationLoading}
+          />
         </section>
       </div>
     </Container>

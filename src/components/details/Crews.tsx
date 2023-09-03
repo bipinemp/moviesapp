@@ -17,9 +17,15 @@ function Crews({
 
   if (loading) {
     return (
-      <div className="flex gap-5">
-        <div className="bg-gray-500 animate-pulse w-[60px] h-[10px]"></div>
-        <div className="bg-gray-500 animate-pulse w-[60px] h-[10px]"></div>
+      <div className="flex flex-col gap-4">
+        <div className="flex gap-5">
+          <div className="bg-gray-500 animate-pulse w-[60px] h-[10px]"></div>
+          <div className="bg-gray-500 animate-pulse w-[60px] h-[10px]"></div>
+        </div>
+        <div className="flex gap-5">
+          <div className="bg-gray-500 animate-pulse w-[60px] h-[10px]"></div>
+          <div className="bg-gray-500 animate-pulse w-[60px] h-[10px]"></div>
+        </div>
       </div>
     );
   }

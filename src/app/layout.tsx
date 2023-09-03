@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Navbar from "@/components/header/Navbar";
 import "react-circular-progressbar/dist/styles.css";
+import Footer from "@/components/footer/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
         <QueryProvider>
           <Navbar />
           {children}
+          <Footer />
         </QueryProvider>
       </body>
     </html>

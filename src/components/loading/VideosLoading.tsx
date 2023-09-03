@@ -7,7 +7,6 @@ export default function VideosLoading() {
       <div className="bg-gray-500 w-[180px] h-[100px] animate-pulse rounded-lg"></div>
       <div className="bg-gray-500 w-[180px] h-[100px] animate-pulse rounded-lg"></div>
       <div className="bg-gray-500 w-[180px] h-[100px] animate-pulse rounded-lg"></div>
-      <div className="bg-gray-500 w-[180px] h-[100px] animate-pulse rounded-lg"></div>
     </div>
   );
 }

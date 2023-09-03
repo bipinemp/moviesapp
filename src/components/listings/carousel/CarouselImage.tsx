@@ -11,7 +11,7 @@ export default async function CarouselImage({
 }: {
   posterUrl: string | StaticImageData;
   id: number | string;
-  mediaType: string;
+  mediaType?: string | undefined;
   media: string;
 }) {
   const router = useRouter();
