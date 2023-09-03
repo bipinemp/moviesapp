@@ -10,24 +10,48 @@ export default function Footer() {
       </div>
       <div className="flex justify-between font-medium text-black/60">
         <div className="flex flex-col gap-2">
-          <a href="#">Audio and Subtitles</a>
-          <a href="#">Media Center</a>
-          <a href="#">Privacy</a>
-          <a href="#">Contact Us</a>
+          <a id="footerlinks" href="#">
+            Audio and Subtitles
+          </a>
+          <a id="footerlinks" href="#">
+            Media Center
+          </a>
+          <a id="footerlinks" href="#">
+            Privacy
+          </a>
+          <a id="footerlinks" href="#">
+            Contact Us
+          </a>
         </div>
         <div className="flex flex-col gap-2">
-          <a href="#">Audio Description</a>
-          <a href="#">Investor Relations</a>
-          <a href="#">Legal Notices</a>
+          <a id="footerlinks" href="#">
+            Audio Description
+          </a>
+          <a id="footerlinks" href="#">
+            Investor Relations
+          </a>
+          <a id="footerlinks" href="#">
+            Legal Notices
+          </a>
         </div>
         <div className="flex flex-col gap-2">
-          <a href="#">Audio Description</a>
-          <a href="#">Jobs</a>
-          <a href="#">Cookie Preferences</a>
+          <a id="footerlinks" href="#">
+            Audio Description
+          </a>
+          <a id="footerlinks" href="#">
+            Jobs
+          </a>
+          <a id="footerlinks" href="#">
+            Cookie Preferences
+          </a>
         </div>
         <div className="flex flex-col gap-2">
-          <a href="#">Gift Cards</a>
-          <a href="#">Terms of Use</a>
+          <a id="footerlinks" href="#">
+            Gift Cards
+          </a>
+          <a id="footerlinks" href="#">
+            Terms of Use
+          </a>
         </div>
       </div>
       <div className="flex gap-5 self-center">
