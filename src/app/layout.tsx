@@ -3,7 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Navbar from "@/components/header/Navbar";
-import Footer from "@/components/footer/Footer";
+import "react-circular-progressbar/dist/styles.css";
 
 const poppins = Poppins({
   subsets: ["latin"],

@@ -1,6 +1,7 @@
 import { Banner } from "@/types/types";
 import { StaticImageData } from "next/image";
 import BannerImage from "./BannerImage";
+import Link from "next/link";
 
 export default function BannerItem({
   selectedBanner,
@@ -21,12 +22,12 @@ export default function BannerItem({
         <p className="text-light text-sm tracking-wide">
           {selectedBanner.overview.substring(0, 200)}...
         </p>
-        <button
-          type="button"
-          className="bg-darkprimary py-2 px-10 rounded-full shadow-sm tracking-wide hover:scale-95 hover:opacity-90 transition-all ease-in-out shadow-darkprimary w-fit font-bold"
+        <Link
+          href={`/${selectedBanner.id}`}
+          className="bg-gradient-to-r from-red-500 to-orange-500 py-2 px-10 rounded-full shadow-sm tracking-wide hover:scale-95 hover:opacity-90 transition-all ease-in-out shadow-darkprimary w-fit font-bold"
         >
           View
-        </button>
+        </Link>
       </div>
       <BannerImage bannerUrl={bannerUrl} />
     </div>

@@ -1,5 +1,5 @@
 import { BiSearch } from "react-icons/bi";
-import Container from "../Container";
+import Container from "../containers/Container";
 import Image from "next/image";
 import Logo from "../../../public/logoo.png";
 import NavLinks from "./NavLinks";

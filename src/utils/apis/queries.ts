@@ -15,3 +15,4 @@ export async function fetchData(url: string) {
     return error;
   }
 }
+// https://api.themoviedb.org/3/movie/614930?api_key=c3913f726cde9ba73b0b7211ecfc40b9

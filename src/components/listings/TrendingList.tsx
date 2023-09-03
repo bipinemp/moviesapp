@@ -4,16 +4,18 @@ import { ApiResponse } from "@/types/types";
 import { fetchData } from "@/utils/apis/queries";
 import { Trending } from "@/utils/resource/links";
 import { useQuery } from "@tanstack/react-query";
-import Container from "../Container";
+import Container from "../containers/Container";
 import Carousel from "./carousel/Carousel";
 import { useState } from "react";
 
 export default function TrendingList() {
   const [active, setActive] = useState<string>("day");
 
+  const type = "movie";
+
   const link: string = Trending("movie", active);
   const { data } = useQuery<ApiResponse>({
-    queryKey: ["lists", active],
+    queryKey: ["trending", active],
     queryFn: () => fetchData(link),
   });
 
@@ -39,7 +41,7 @@ export default function TrendingList() {
             <span
               className={`w-[48%] h-full absolute ${
                 active === "day" ? "translate-x-0" : "translate-x-full"
-              } transition duration-200 ease-in-out top-0 bg-gradient-to-r from-darkprimary to-primary rounded-full z-0`}
+              } transition duration-200 ease-in-out top-0 bg-gradient-to-r from-red-500 to-orange-500 rounded-full z-0`}
             ></span>
             <button
               type="button"
@@ -67,7 +69,7 @@ export default function TrendingList() {
             </button>
           </div>
         </div>
-        <Carousel data={trendingData} />
+        <Carousel data={trendingData} media={type} />
       </section>
     </Container>
   );

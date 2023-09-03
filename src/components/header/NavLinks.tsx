@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 interface NavLink {
   name: string;
@@ -14,18 +15,17 @@ interface NavLinkProps {
 
 export default function NavLinks({ navLink }: NavLinkProps) {
   const pathname = usePathname();
-  const router = useRouter();
 
   return (
     <>
       {navLink.map(({ link, name }) => (
-        <li
+        <Link
           key={link}
-          onClick={() => router.push(link)}
+          href={`${link}`}
           className={`${pathname === link ? "text-white" : "text-light"}`}
         >
           {name}
-        </li>
+        </Link>
       ))}
     </>
   );

@@ -1,4 +1,4 @@
-import Container from "../Container";
+import Container from "../containers/Container";
 
 export default function BannerLoading() {
   return (

@@ -3,7 +3,7 @@ import CarouselItem from "./CarouselItem";
 import PosterFallback from "@/assets/no-poster.png";
 import { ApiResponse } from "@/types/types";
 
-function Carousel({ data }: { data: ApiResponse }) {
+function Carousel({ data, media }: { data: ApiResponse; media: string }) {
   return (
     <div className="flex gap-2 overflow-x-auto no-scrollbar space-x-1">
       {data?.results?.map((item) => {
@@ -11,7 +11,15 @@ function Carousel({ data }: { data: ApiResponse }) {
         let posterUrl = item.poster_path
           ? url + item.poster_path
           : PosterFallback;
-        return <CarouselItem key={item.id} posterUrl={posterUrl} />;
+        return (
+          <CarouselItem
+            key={item.id}
+            id={item.id}
+            mediaType={item.media_type}
+            media={media}
+            posterUrl={posterUrl}
+          />
+        );
       })}
     </div>
   );

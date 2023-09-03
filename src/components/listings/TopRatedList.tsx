@@ -3,7 +3,7 @@
 import { ApiResponse } from "@/types/types";
 import { fetchData } from "@/utils/apis/queries";
 import { useQuery } from "@tanstack/react-query";
-import Container from "../Container";
+import Container from "../containers/Container";
 import Carousel from "./carousel/Carousel";
 import { useState } from "react";
 import { TopRated } from "@/utils/resource/links";
@@ -13,7 +13,7 @@ export default function TopRatedList() {
 
   const link: string = TopRated(active);
   const { data } = useQuery<ApiResponse>({
-    queryKey: ["lists", link],
+    queryKey: ["toprated", link],
     queryFn: () => fetchData(link),
   });
 
@@ -39,7 +39,7 @@ export default function TopRatedList() {
             <span
               className={`w-[48%] h-full absolute ${
                 active === "movie" ? "translate-x-0" : "translate-x-full"
-              } transition duration-200 ease-in-out top-0 bg-gradient-to-r from-darkprimary to-primary rounded-full z-0`}
+              } transition duration-200 ease-in-out top-0 bg-gradient-to-r from-red-500 to-orange-500 rounded-full z-0`}
             ></span>
             <button
               type="button"
@@ -67,7 +67,7 @@ export default function TopRatedList() {
             </button>
           </div>
         </div>
-        <Carousel data={trendingData} />
+        <Carousel data={trendingData} media={active} />
       </section>
     </Container>
   );

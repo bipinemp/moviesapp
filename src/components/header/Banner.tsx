@@ -4,7 +4,7 @@ import { BannerType } from "@/types/types";
 import { fetchData } from "@/utils/apis/queries";
 import { image, upcoming } from "@/utils/resource/links";
 import { useQuery } from "@tanstack/react-query";
-import Container from "../Container";
+import Container from "../containers/Container";
 import PosterFallback from "@/assets/no-poster.png";
 import BannerItem from "./BannerItem";
 import BannerLoading from "../loading/BannerLoading";
