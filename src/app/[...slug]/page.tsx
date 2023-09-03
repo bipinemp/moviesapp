@@ -10,6 +10,7 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { CastsFn } from "@/utils/resource/links";
 import Crews from "@/components/details/Crews";
 import Casts from "@/components/details/Casts";
+import DetailsLoading from "@/components/loading/DetailsLoading";
 
 export default function Page({
   params,
@@ -19,7 +20,7 @@ export default function Page({
   // movie console.log(params.slug[0]);
   // id  console.log(params.slug[1]);
 
-  const { data } = useQuery<DetailsResponse>({
+  const { data, isLoading } = useQuery<DetailsResponse>({
     queryKey: ["details", params.slug[1]],
     queryFn: () =>
       fetchData(
@@ -37,8 +38,12 @@ export default function Page({
     queryFn: () => fetchData(link),
   });
 
+  if (isLoading) {
+    return <DetailsLoading />;
+  }
+
   if (!data || !CastsCrews) {
-    return <p>No data available</p>;
+    return null;
   }
 
   function formatRuntime(minutes: number) {
@@ -134,6 +139,9 @@ export default function Page({
           </div>
 
           <Crews data={CastsCrews} />
+          <h1 className="text-lg underline underline-offset-4 tracking-wide">
+            Casts:
+          </h1>
           <Casts data={CastsCrews} />
         </div>
       </section>
