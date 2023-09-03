@@ -3,7 +3,7 @@ import CastImage from "./CastImage";
 
 export default function Casts({ data }: { data: CastType }) {
   return (
-    <div className="flex overflow-x-auto no-scrollbar border-l-[1px] border-r-[1px] border-light">
+    <div className="flex overflow-x-auto no-scrollbar border-l-[1px] border-light">
       <div className="flex gap-1">
         {data?.cast.map((cast) => (
           <div className="flex flex-col items-center gap-1 cursor-pointer w-[160px]">

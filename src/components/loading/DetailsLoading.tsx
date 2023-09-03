@@ -4,7 +4,7 @@ export default function DetailsLoading() {
   return (
     <Container>
       <section className="mt-10 flex justify-center gap-10 mb-10">
-        <div className="w-[250px] h-[350px] rounded-lg bg-gray-500 animate-pulse"></div>
+        <div className="relative w-[30%]  rounded-lg bg-gray-500 animate-pulse"></div>
 
         <div className="relative flex flex-col gap-6 w-[60%]">
           <div className="flex flex-col gap-2">
