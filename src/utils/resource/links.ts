@@ -22,5 +22,10 @@ export const details =
 export function CastsFn(type: string | number, id: number | string) {
   return `/${type}/${id}/credits`;
 }
+
+export function VideoFn(type: string | number, id: number | string) {
+  return `/${type}/${id}/videos`;
+}
+
 // /mediatype/id/videos
 // /mediatype/id/credits

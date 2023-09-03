@@ -1,9 +1,9 @@
 "use client";
 
 import Container from "@/components/containers/Container";
-import { CastType, DetailsResponse } from "@/types/types";
+import { CastType, DetailsResponse, VideoType } from "@/types/types";
 import { fetchData } from "@/utils/apis/queries";
-import { image } from "@/utils/resource/links";
+import { VideoFn, image } from "@/utils/resource/links";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
@@ -11,8 +11,7 @@ import { CastsFn } from "@/utils/resource/links";
 import Crews from "@/components/details/Crews";
 import Casts from "@/components/details/Casts";
 import DetailsLoading from "@/components/loading/DetailsLoading";
-import { Suspense } from "react";
-import CastImageLoading from "@/components/loading/CastImageLoading";
+import Videos from "@/components/videos/Videos";
 
 export default function Page({
   params,
@@ -34,16 +33,23 @@ export default function Page({
       ),
   });
 
-  const { data: CastsCrews, isLoading: DetailsLoadin } = useQuery<CastType>({
-    queryKey: ["casts"],
+  const { data: CastsCrews } = useQuery<CastType>({
+    queryKey: ["casts", params.slug[1]],
     queryFn: () => fetchData(link),
+  });
+
+  const videolink: string = VideoFn(media, id);
+
+  const { data: VideosData } = useQuery<VideoType>({
+    queryKey: ["videos", params.slug[1]],
+    queryFn: () => fetchData(videolink),
   });
 
   if (isLoading) {
     return <DetailsLoading />;
   }
 
-  if (!data || !CastsCrews) {
+  if (!data || !CastsCrews || !VideosData) {
     return null;
   }
 
@@ -67,14 +73,13 @@ export default function Page({
       <div className="flex flex-col gap-10 mb-10">
         <section className="mt-10 flex justify-center gap-10">
           <div className="relative w-[30%]">
-            <Suspense fallback={<CastImageLoading />}>
-              <Image
-                src={`${image}/${data?.poster_path}`}
-                alt="poster image"
-                fill
-                className="object-contain rounded-lg"
-              />
-            </Suspense>
+            <Image
+              src={`${image}/${data?.poster_path}`}
+              alt="poster image"
+              fill
+              loading="lazy"
+              className="object-contain rounded-lg"
+            />
           </div>
 
           <div className="relative flex flex-col gap-6 w-[60%]">
@@ -147,6 +152,10 @@ export default function Page({
         <section className="flex flex-col gap-5">
           <h1 className="text-lg tracking-wider font-semibold">Top Casts :</h1>
           <Casts data={CastsCrews} />
+        </section>
+
+        <section>
+          <Videos vidData={VideosData} />
         </section>
       </div>
     </Container>

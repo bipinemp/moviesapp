@@ -12,6 +12,7 @@ export default function CastImage({ profile }: { profile: string }) {
         fill
         alt="cast picture"
         className="object-cover object-top rounded-[50%]"
+        loading="lazy"
       />
     </Suspense>
   );

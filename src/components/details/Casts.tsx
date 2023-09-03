@@ -6,7 +6,10 @@ export default function Casts({ data }: { data: CastType }) {
     <div className="flex overflow-x-auto no-scrollbar border-l-[1px] border-light">
       <div className="flex gap-1">
         {data?.cast.map((cast) => (
-          <div className="flex flex-col items-center gap-1 cursor-pointer w-[160px]">
+          <div
+            key={cast.id}
+            className="flex flex-col items-center gap-1 cursor-pointer w-[160px]"
+          >
             <div className="relative w-[110px] h-[120px]">
               <CastImage profile={cast?.profile_path} />
             </div>
