@@ -7,8 +7,9 @@ import { image } from "@/utils/resource/links";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import Casts from "@/components/details/Casts";
 import { CastsFn } from "@/utils/resource/links";
+import Crews from "@/components/details/Crews";
+import Casts from "@/components/details/Casts";
 
 export default function Page({
   params,
@@ -31,12 +32,12 @@ export default function Page({
 
   const link: string = CastsFn(media, id);
 
-  const { data: CastsData } = useQuery<CastType>({
+  const { data: CastsCrews } = useQuery<CastType>({
     queryKey: ["casts"],
     queryFn: () => fetchData(link),
   });
 
-  if (!data || !CastsData) {
+  if (!data || !CastsCrews) {
     return <p>No data available</p>;
   }
 
@@ -57,18 +58,18 @@ export default function Page({
 
   return (
     <Container>
-      <section className="mt-10 flex justify-center gap-10">
+      <section className="mt-10 flex justify-center gap-10 mb-10">
         <div>
           <Image
             src={`${image}/${data?.poster_path}`}
             alt="poster image"
-            width={300}
-            height={350}
+            width={250}
+            height={100}
             className="object-contain rounded-lg"
           />
         </div>
 
-        <div className="flex flex-col gap-6 w-[60%]">
+        <div className="relative flex flex-col gap-6 w-[60%]">
           <div className="flex flex-col gap-2">
             <h1 className="font-medium text-xl tracking-wide">
               {data?.title || data?.original_title || data?.name}
@@ -104,7 +105,7 @@ export default function Page({
             />
           </div>
 
-          <div className="flex flex-col gap-">
+          <div className="flex flex-col gap-2">
             <h1 className="text-xl font-medium tracking-wide">Overview</h1>
             <p className="text-[0.8rem] text-light tracking-wide">
               {data?.overview}
@@ -132,8 +133,8 @@ export default function Page({
             ) : null}
           </div>
 
-          <Casts data={CastsData} />
-          <div></div>
+          <Crews data={CastsCrews} />
+          <Casts data={CastsCrews} />
         </div>
       </section>
     </Container>

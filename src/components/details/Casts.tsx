@@ -1,39 +1,37 @@
 import { CastType } from "@/types/types";
-import React from "react";
+import { image } from "@/utils/resource/links";
+import Image from "next/image";
+import { Suspense } from "react";
+import FallbackAvatar from "@/assets/avatar.png";
 
-function Casts({ data }: { data: CastType }) {
-  const director = data?.crew.filter((cast) => cast.job === "Director");
-
-  const writer = data?.crew.filter(
-    (cast) =>
-      cast.job === "Screenplay" || cast.job === "Story" || cast.job === "Writer"
-  );
-
-  // Acting Writing Crew Directing Sound Art Camera Editing Production Costume & Make-Up Visual Effects
+export default function Casts({ data }: { data: CastType }) {
   return (
-    <div className="flex flex-col gap-3 -mt-2">
-      {director.length > 0 ? (
-        <div className="flex gap-3 items-center border-b-[1px] border-light pb-2">
-          <p className="tracking-wide text-sm">Director: </p>
-          {director.map((cast) => (
-            <p key={cast.id} className="tracking-wide text-light text-xs">
-              {cast.original_name} &nbsp;&nbsp;
+    <div className="flex overflow-x-auto no-scrollbar">
+      <div className="flex gap-1">
+        {data?.cast.map((cast) => (
+          <div className="flex flex-col items-center gap-1 cursor-pointer w-[160px]">
+            <div className="relative w-[100px] h-[120px]">
+              <Image
+                src={
+                  cast.profile_path !== null
+                    ? `${image}/${cast.profile_path}`
+                    : FallbackAvatar
+                }
+                fill
+                alt="cast picture"
+                className="object-cover object-top rounded-[50%]"
+              />
+            </div>
+
+            <p className="text-sm text-center">
+              {cast.original_name ? cast.original_name : null}
             </p>
-          ))}
-        </div>
-      ) : null}
-      {writer.length > 0 ? (
-        <div className="flex items-center gap-2 border-b-[1px] border-light pb-2">
-          <p className="tracking-wide text-sm">Writer: </p>
-          {writer.map((cast) => (
-            <p key={cast.id} className="tracking-wide text-light text-xs">
-              {cast.original_name} &nbsp;&nbsp;&nbsp;
+            <p className="text-[0.6rem] text-center text-light">
+              {cast.character ? cast.character : null}
             </p>
-          ))}
-        </div>
-      ) : null}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
-
-export default Casts;
