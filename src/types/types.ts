@@ -98,7 +98,7 @@ export interface VideoType {
   results: Video[];
 }
 
-interface Video {
+export interface Video {
   id: string;
   iso_639_1: string;
   iso_3166_1: string;

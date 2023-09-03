@@ -1,7 +1,13 @@
 import { CastType } from "@/types/types";
 import React from "react";
 
-function Crews({ data }: { data: CastType }) {
+function Crews({
+  data,
+  loading,
+}: {
+  data: CastType | undefined;
+  loading: boolean;
+}) {
   const director = data?.crew.filter((crew) => crew.job === "Director");
 
   const writerJobs = ["Screenplay", "Story", "Writer"];
@@ -9,10 +15,19 @@ function Crews({ data }: { data: CastType }) {
 
   const writer = data?.crew.filter((crew) => writerJobs.includes(crew.job));
 
+  if (loading) {
+    return (
+      <div className="flex gap-5">
+        <div className="bg-gray-500 animate-pulse w-[60px] h-[10px]"></div>
+        <div className="bg-gray-500 animate-pulse w-[60px] h-[10px]"></div>
+      </div>
+    );
+  }
+
   // Acting Writing Crew Directing Sound Art Camera Editing Production Costume & Make-Up Visual Effects
   return (
     <div className="flex flex-col gap-3 -mt-2">
-      {director.length > 0 ? (
+      {director && director.length > 0 ? (
         <div className="flex gap-3 items-center border-b-[1px] border-light pb-2">
           <p className="tracking-wide text-sm">Director: </p>
           {director.map((crew) => (
@@ -22,7 +37,7 @@ function Crews({ data }: { data: CastType }) {
           ))}
         </div>
       ) : null}
-      {writer.length > 0 ? (
+      {writer && writer.length > 0 ? (
         <div className="flex items-center gap-2 border-b-[1px] border-light pb-2">
           <p className="tracking-wide text-sm">Writer: </p>
           {writer.map((crew) => {

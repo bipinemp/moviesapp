@@ -1,9 +1,18 @@
 import { CastType } from "@/types/types";
 import CastImage from "./CastImage";
 
-export default function Casts({ data }: { data: CastType }) {
+export default function Casts({
+  data,
+  loading,
+}: {
+  data: CastType | undefined;
+  loading: boolean;
+}) {
+  if (loading) {
+    return <p>loading...</p>;
+  }
   return (
-    <div className="flex overflow-x-auto no-scrollbar border-l-[1px] border-light">
+    <div className="flex overflow-x-auto no-scrollbar border-l-[1px] border-light pl-2">
       <div className="flex gap-1">
         {data?.cast.map((cast) => (
           <div

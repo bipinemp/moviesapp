@@ -25,7 +25,7 @@ export default function Page({
 
   const link: string = CastsFn(media, id);
 
-  const { data, isLoading } = useQuery<DetailsResponse>({
+  const { data, isLoading, isSuccess } = useQuery<DetailsResponse>({
     queryKey: ["details", params.slug[1]],
     queryFn: () =>
       fetchData(
@@ -33,24 +33,26 @@ export default function Page({
       ),
   });
 
-  const { data: CastsCrews } = useQuery<CastType>({
+  const {
+    data: CastsCrews,
+    isLoading: castsLoading,
+    isSuccess: castsSuccess,
+  } = useQuery<CastType>({
     queryKey: ["casts", params.slug[1]],
+    enabled: isSuccess,
     queryFn: () => fetchData(link),
   });
 
   const videolink: string = VideoFn(media, id);
 
-  const { data: VideosData } = useQuery<VideoType>({
+  const { data: VideosData, isLoading: videosLoading } = useQuery<VideoType>({
     queryKey: ["videos", params.slug[1]],
+    enabled: castsSuccess,
     queryFn: () => fetchData(videolink),
   });
 
   if (isLoading) {
     return <DetailsLoading />;
-  }
-
-  if (!data || !CastsCrews || !VideosData) {
-    return null;
   }
 
   function formatRuntime(minutes: number) {
@@ -66,7 +68,11 @@ export default function Page({
     }
   }
 
-  const formattedRuntime = formatRuntime(data?.runtime);
+  let formattedRuntime;
+
+  if (data?.runtime) {
+    formattedRuntime = formatRuntime(data?.runtime);
+  }
 
   return (
     <Container>
@@ -101,21 +107,23 @@ export default function Page({
             </div>
 
             <div style={{ width: 50 }}>
-              <CircularProgressbar
-                value={data?.vote_average}
-                maxValue={10}
-                text={`${data?.vote_average.toFixed(1)}`}
-                styles={buildStyles({
-                  pathColor:
-                    data?.vote_average < 5
-                      ? "red"
-                      : data?.vote_average < 7
-                      ? "orange"
-                      : "green",
-                  textColor: "white",
-                  textSize: "30px",
-                })}
-              />
+              {data?.vote_average ? (
+                <CircularProgressbar
+                  value={data?.vote_average}
+                  maxValue={10}
+                  text={`${data?.vote_average.toFixed(1)}`}
+                  styles={buildStyles({
+                    pathColor:
+                      data?.vote_average < 5
+                        ? "red"
+                        : data?.vote_average < 7
+                        ? "orange"
+                        : "green",
+                    textColor: "white",
+                    textSize: "30px",
+                  })}
+                />
+              ) : null}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -146,16 +154,16 @@ export default function Page({
               ) : null}
             </div>
 
-            <Crews data={CastsCrews} />
+            <Crews data={CastsCrews} loading={castsLoading} />
           </div>
         </section>
         <section className="flex flex-col gap-5">
           <h1 className="text-lg tracking-wider font-semibold">Top Casts :</h1>
-          <Casts data={CastsCrews} />
+          <Casts data={CastsCrews} loading={castsLoading} />
         </section>
 
         <section>
-          <Videos vidData={VideosData} />
+          <Videos vidData={VideosData} loading={videosLoading} />
         </section>
       </div>
     </Container>
