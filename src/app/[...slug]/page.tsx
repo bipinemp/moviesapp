@@ -7,11 +7,10 @@ import { image } from "@/utils/resource/links";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import { format } from "date-fns";
 import Casts from "@/components/details/Casts";
 import { CastsFn } from "@/utils/resource/links";
 
-export default function page({
+export default function Page({
   params,
 }: {
   params: { slug: string[] | number[] };
