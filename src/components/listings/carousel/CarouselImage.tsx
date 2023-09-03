@@ -24,8 +24,7 @@ export default async function CarouselImage({
         width={150}
         height={200}
         onClick={() => router.push(`/${mediaType || media}/${id}`)}
-        className="transition-opacity opacity-0 duration-[500ms] rounded-lg cursor-pointer bg-indigo-200"
-        onLoadingComplete={(image) => image.classList.remove("opacity-0")}
+        className="rounded-lg cursor-pointer bg-indigo-200"
       />
     </>
   );
