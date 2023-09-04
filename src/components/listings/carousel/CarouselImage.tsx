@@ -24,7 +24,7 @@ export default function CarouselImage({
           alt="movie_tvshow_poster"
           width={150}
           height={200}
-          className={`rounded-lg cursor-pointer ${
+          className={`rounded-lg cursor-pointer min-h-[230px] ${
             img ? "bg-gray-500 animate-pulse" : ""
           }`}
           onLoadingComplete={() => setImg(false)}
