@@ -1,7 +1,5 @@
-"use client";
-
 import Image, { StaticImageData } from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function CarouselImage({
   posterUrl,
@@ -14,18 +12,17 @@ export default function CarouselImage({
   mediaType?: string | undefined;
   media: string;
 }) {
-  const router = useRouter();
-
   return (
     <>
-      <Image
-        src={posterUrl}
-        alt="movie_tvshow_poster"
-        width={150}
-        height={200}
-        onClick={() => router.push(`/${mediaType || media}/${id}`)}
-        className="rounded-lg cursor-pointer bg-gray-500"
-      />
+      <Link href={`/${mediaType || media}/${id}`}>
+        <Image
+          src={posterUrl}
+          alt="movie_tvshow_poster"
+          width={150}
+          height={200}
+          className="rounded-lg cursor-pointer bg-gray-500"
+        />
+      </Link>
     </>
   );
 }
