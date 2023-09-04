@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import VideosLoading from "../loading/VideosLoading";
 import VideoPopup from "./VideoPopup";
+import { AiFillPlayCircle } from "react-icons/ai";
 
 export default function Videos({
   vidData,
@@ -40,7 +41,7 @@ export default function Videos({
                   setShow(true);
                 }}
               >
-                <div className="relative w-[180px] h-[100px] border-[1px] rounded-lg">
+                <div className="relative w-[180px] h-[100px] border-[1px] rounded-lg flex items-center justify-center">
                   <Image
                     src={`https://img.youtube.com/vi/${video.key}/mqdefault.jpg`}
                     fill
@@ -51,6 +52,9 @@ export default function Videos({
                     loading="lazy"
                     onLoadingComplete={() => setImg(false)}
                   />
+                  <div className="absolute">
+                    <AiFillPlayCircle size={40} className="text-white/70" />
+                  </div>
                 </div>
                 <div className="text-[0.75rem] w-[180px] tracking-wide text-light">
                   {video.name}
