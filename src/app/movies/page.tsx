@@ -18,7 +18,7 @@ const Page = () => {
 
   const { ref, entry } = useIntersection({
     root: lastMovieRef.current,
-    threshold: 0.6,
+    threshold: 1,
   });
 
   const { fetchNextPage, isFetchingNextPage, data, isLoading, isError, error } =
