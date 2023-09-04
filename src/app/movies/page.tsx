@@ -17,6 +17,11 @@ const page = () => {
   let pageNum: number = 0;
   const lastMovieRef = useRef(null);
 
+  const { ref, entry } = useIntersection({
+    root: lastMovieRef.current,
+    threshold: 0.6,
+  });
+
   const { fetchNextPage, isFetchingNextPage, data, isLoading, isError, error } =
     useInfiniteQuery<InfiniteMovies>({
       queryKey: ["infiniteMovies"],
@@ -25,15 +30,6 @@ const page = () => {
         return pages.length + 1;
       },
     });
-
-  if (isLoading) {
-    return <MoviesLoading />;
-  }
-
-  const { ref, entry } = useIntersection({
-    root: lastMovieRef.current,
-    threshold: 0.6,
-  });
 
   useEffect(() => {
     if (entry?.isIntersecting) {
@@ -45,6 +41,10 @@ const page = () => {
   useEffect(() => {
     pageNum = 1;
   }, []);
+
+  if (isLoading) {
+    return <MoviesLoading />;
+  }
 
   const movies = data?.pages.map((page) => page.results).flat();
 
