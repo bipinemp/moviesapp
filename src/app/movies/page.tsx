@@ -12,7 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import MoviesLoading from "@/components/details/loading/MoviesLoading";
 
-const page = () => {
+const Page = () => {
   const [img, setImg] = useState<boolean>(true);
   let pageNum: number = 0;
   const lastMovieRef = useRef(null);
@@ -87,4 +87,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
