@@ -44,7 +44,7 @@ export default function Videos({
                     src={`https://img.youtube.com/vi/${video.key}/mqdefault.jpg`}
                     fill
                     alt="video thumbnail picture"
-                    className="object-cover rounded-lg"
+                    className="object-cover rounded-lg bg-gray-500"
                     loading="lazy"
                   />
                 </div>

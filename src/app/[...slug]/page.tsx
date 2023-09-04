@@ -25,6 +25,7 @@ import Videos from "@/components/videos/Videos";
 import Similar from "@/components/details/Similar";
 import Recommedation from "@/components/details/Recommedation";
 import PosterFallback from "@/assets/no-poster.png";
+import { useState } from "react";
 
 export default function Page({
   params,
@@ -33,6 +34,8 @@ export default function Page({
 }) {
   // movie console.log(params.slug[0]);
   // id  console.log(params.slug[1]);
+  const [img, setImg] = useState<boolean>(true);
+
   const media = params.slug[0];
   const id = params.slug[1];
 
@@ -114,17 +117,24 @@ export default function Page({
       <div className="flex flex-col gap-10 mb-10">
         <section className="mt-10 flex justify-center gap-10">
           <div className="relative w-[30%]">
-            <Image
-              src={
-                data?.poster_path !== null
-                  ? `${image}/${data?.poster_path}`
-                  : PosterFallback
-              }
-              alt="poster image"
-              fill
-              loading="lazy"
-              className="object-contain rounded-lg"
-            />
+            {data?.poster_path ? (
+              <Image
+                src={
+                  data?.poster_path !== null
+                    ? `${image}/${data?.poster_path}`
+                    : PosterFallback
+                }
+                alt="poster image"
+                fill
+                loading="lazy"
+                className={`object-fill rounded-lg ${
+                  img ? "bg-gray-500 animate-pulse" : ""
+                }`}
+                onLoadingComplete={() => setImg(false)}
+              />
+            ) : (
+              <p>loading image...</p>
+            )}
           </div>
 
           <div className="relative flex flex-col gap-6 w-[60%]">
