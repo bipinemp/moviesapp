@@ -53,7 +53,10 @@ export default function Videos({
                     onLoadingComplete={() => setImg(false)}
                   />
                   <div className="absolute">
-                    <AiFillPlayCircle size={40} className="text-white/70" />
+                    <AiFillPlayCircle
+                      size={40}
+                      className="text-white/70 hover:text-white/90 hover:scale-125 transition"
+                    />
                   </div>
                 </div>
                 <div className="text-[0.75rem] w-[180px] tracking-wide text-light">
