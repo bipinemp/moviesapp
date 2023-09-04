@@ -65,6 +65,7 @@ const Page = () => {
                     }`}
                     loading="lazy"
                     onLoadingComplete={() => setImg(false)}
+                    quality={20}
                   />
                 </Link>
               </div>
@@ -72,7 +73,12 @@ const Page = () => {
           })}
 
           <span className="relative w-full text-center text-xl m-2">
-            {isFetchingNextPage ? "Loading more..." : null}
+            {isFetchingNextPage ? (
+              <div
+                className="text-center inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-darkprimary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status"
+              ></div>
+            ) : null}
           </span>
         </div>
       </div>
