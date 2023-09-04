@@ -21,7 +21,7 @@ export default function Recommedation({
       {data && data.results.length > 0 ? (
         <>
           <h1 className="font-bold text-2xl opacity-80 tracking-wide text-light">
-            Recommendations
+            Recommendation{data.results.length > 1 ? "s" : ""}
           </h1>
           <Carousel data={data} media={media} />
         </>
