@@ -220,7 +220,9 @@ export default function Page({
           </section>
         ) : null}
         {/* Border between Movies details and similar and recommendation  */}
-        <hr className="border-light"></hr>
+        {SimilarData && SimilarData?.results.length > 0 ? (
+          <hr className="border-light"></hr>
+        ) : null}
         {/* Similar Movies/Show Section */}
         {SimilarData && SimilarData.results.length > 0 ? (
           <section className="min-h-[310px]">
