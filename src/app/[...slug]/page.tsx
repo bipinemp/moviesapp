@@ -81,10 +81,7 @@ export default function Page({
     });
 
   if (isLoading) {
-    document.body.style.overflow = "hidden";
     return <DetailsLoading />;
-  } else {
-    document.body.style.overflowY = "auto";
   }
 
   function formatRuntime(minutes: number) {
@@ -226,6 +223,8 @@ export default function Page({
             <Videos vidData={VideosData} loading={videosLoading} />
           </section>
         ) : null}
+        {/* Border between Movies details and similar and recommendation  */}
+        <hr className="border-light"></hr>
         {/* Similar Movies/Show Section */}
         {SimilarData && SimilarData.results.length > 0 ? (
           <section className="min-h-[310px]">

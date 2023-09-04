@@ -23,7 +23,7 @@ export default function Videos({
   const reversedResults = [...(vidData?.results || [])].reverse();
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 min-h-[200px]">
       {reversedResults && reversedResults.length > 0 ? (
         <>
           <h1 className="text-lg tracking-wider font-semibold">
