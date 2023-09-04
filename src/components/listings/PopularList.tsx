@@ -33,49 +33,41 @@ export default function PopularList() {
     <Container>
       <section className="flex h-[310px] flex-col gap-3 rounded-lg mt-10">
         <div className="flex justify-between">
-          {isLoading ? (
-            <div className="bg-gray-600 animate-pulse w-[120px] h-[35px] rounded-md"></div>
-          ) : (
-            <h1 className="font-bold text-2xl opacity-80 tracking-wide  text-light">
-              What&apos;s Popular
-            </h1>
-          )}
+          <h1 className="font-bold text-2xl opacity-80 tracking-wide  text-light">
+            What&apos;s Popular
+          </h1>
 
-          {isLoading ? (
-            <div className="w-[180px] h-[45px] rounded-full bg-gray-600 animate-pulse"></div>
-          ) : (
-            <div className="relative flex gap-3 p-1 border-[2px] border-white rounded-full">
-              <span
-                className={`w-[48%] h-full absolute ${
-                  active === "movie" ? "translate-x-0" : "translate-x-full"
-                } transition duration-200 ease-in-out top-0 bg-gradient-to-r from-red-500 to-orange-500 rounded-full z-0`}
-              ></span>
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleClick("movie");
-                }}
-                className={`z-20 py-1 px-5 font-bold tracking-wide ${
-                  active === "movie" ? "bg-primarydark" : ""
-                }`}
-              >
-                movie
-              </button>
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleClick("tv");
-                }}
-                className={`z-20 py-1 px-5 font-bold tracking-wide ${
-                  active === "tv" ? "bg-primarydark" : ""
-                }`}
-              >
-                series
-              </button>
-            </div>
-          )}
+          <div className="relative flex gap-3 p-1 border-[2px] border-white rounded-full">
+            <span
+              className={`w-[48%] h-full absolute ${
+                active === "movie" ? "translate-x-0" : "translate-x-full"
+              } transition duration-200 ease-in-out top-0 bg-gradient-to-r from-red-500 to-orange-500 rounded-full z-0`}
+            ></span>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                handleClick("movie");
+              }}
+              className={`z-20 py-1 px-5 font-bold tracking-wide ${
+                active === "movie" ? "bg-primarydark" : ""
+              }`}
+            >
+              movie
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                handleClick("tv");
+              }}
+              className={`z-20 py-1 px-5 font-bold tracking-wide ${
+                active === "tv" ? "bg-primarydark" : ""
+              }`}
+            >
+              series
+            </button>
+          </div>
         </div>
 
         {isLoading ? (
