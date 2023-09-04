@@ -44,37 +44,39 @@ const Page = () => {
     <Container>
       <div>
         <div className="flex gap-3 flex-wrap justify-center">
-          {data?.pages
-            .map((page) => page.results)
-            .flat()
-            .map((movie, i) => {
-              if (
-                i ===
-                data?.pages.map((page) => page.results).flat()?.length - 1
-              )
-                return <div key={movie.id} ref={ref}></div>;
-              return (
-                <div className="relative w-[180px] h-[270px]" key={movie.id}>
-                  <Link href={`/movie/${movie.id}`}>
-                    <Image
-                      src={
-                        movie.poster_path !== null
-                          ? `https://image.tmdb.org/3/t/p/original/${movie.poster_path}`
-                          : PosterFallback
-                      }
-                      fill
-                      alt="movie poster"
-                      className={`mb-5 rounded-lg bg-gray-500${
-                        img ? "bg-gray-500 animate-pulse" : ""
-                      }`}
-                      loading="lazy"
-                      onLoadingComplete={() => setImg(false)}
-                      quality={20}
-                    />
-                  </Link>
-                </div>
-              );
-            })}
+          {data &&
+            data?.pages.map((page) => page.results).flat().length > 0 &&
+            data?.pages
+              .map((page) => page.results)
+              .flat()
+              .map((movie, i) => {
+                if (
+                  i ===
+                  data?.pages.map((page) => page.results).flat()?.length - 1
+                )
+                  return <div key={movie.id} ref={ref}></div>;
+                return (
+                  <div className="relative w-[180px] h-[270px]" key={movie.id}>
+                    <Link href={`/movie/${movie.id}`}>
+                      <Image
+                        src={
+                          movie.poster_path !== null
+                            ? `https://image.tmdb.org/3/t/p/original/${movie.poster_path}`
+                            : PosterFallback
+                        }
+                        fill
+                        alt="movie poster"
+                        className={`mb-5 rounded-lg bg-gray-500${
+                          img ? "bg-gray-500 animate-pulse" : ""
+                        }`}
+                        loading="lazy"
+                        onLoadingComplete={() => setImg(false)}
+                        quality={20}
+                      />
+                    </Link>
+                  </div>
+                );
+              })}
 
           <span className="relative w-full text-center text-xl m-2">
             {isFetchingNextPage ? (
