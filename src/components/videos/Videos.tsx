@@ -13,6 +13,7 @@ export default function Videos({
   vidData: VideoType | undefined;
   loading: boolean;
 }) {
+  const [img, setImg] = useState<boolean>(true);
   const [show, setShow] = useState<boolean>(false);
   const [videoId, setVideoId] = useState<string | null>(null);
 
@@ -44,8 +45,11 @@ export default function Videos({
                     src={`https://img.youtube.com/vi/${video.key}/mqdefault.jpg`}
                     fill
                     alt="video thumbnail picture"
-                    className="object-cover rounded-lg bg-gray-500"
+                    className={`object-cover rounded-lg ${
+                      img ? "bg-gray-500 animate-pulse" : ""
+                    }`}
                     loading="lazy"
+                    onLoadingComplete={() => setImg(false)}
                   />
                 </div>
                 <div className="text-[0.75rem] w-[180px] tracking-wide text-light">
