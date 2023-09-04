@@ -109,24 +109,20 @@ export default function Page({
         {/* Movie/Show Details Section  */}
         <section className="mt-10 flex  gap-10 min-h-[400px] pl-1 py-3">
           <div className="relative w-[32%] rounded-lg">
-            {data?.poster_path ? (
-              <Image
-                src={
-                  data?.poster_path !== null
-                    ? `${image}/${data?.poster_path}`
-                    : PosterFallback
-                }
-                alt="poster image"
-                fill
-                loading="lazy"
-                className={`object-fill rounded-lg ${
-                  img ? "bg-gray-500 animate-pulse" : ""
-                }`}
-                onLoadingComplete={() => setImg(false)}
-              />
-            ) : (
-              <p>loading image...</p>
-            )}
+            <Image
+              src={
+                data?.poster_path !== null
+                  ? `${image}/${data?.poster_path}`
+                  : PosterFallback
+              }
+              alt="poster image"
+              fill
+              loading="lazy"
+              className={`object-fill rounded-lg ${
+                img ? "bg-gray-500 animate-pulse" : ""
+              }`}
+              onLoadingComplete={() => setImg(false)}
+            />
           </div>
 
           <div className="relative w-full flex flex-col gap-6 pr-10">
