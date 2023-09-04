@@ -14,7 +14,6 @@ import MoviesLoading from "@/components/details/loading/MoviesLoading";
 
 const Page = () => {
   const [img, setImg] = useState<boolean>(true);
-  const [pageNum, setPageNum] = useState<number>(0);
   const lastMovieRef = useRef(null);
 
   const { ref, entry } = useIntersection({
@@ -33,14 +32,9 @@ const Page = () => {
 
   useEffect(() => {
     if (entry?.isIntersecting) {
-      setPageNum((prev) => prev + 1);
       fetchNextPage();
     }
   }, [entry]);
-
-  useEffect(() => {
-    setPageNum(1);
-  }, []);
 
   if (isLoading) {
     return <MoviesLoading />;
