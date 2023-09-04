@@ -24,7 +24,7 @@ export default async function CarouselImage({
         width={150}
         height={200}
         onClick={() => router.push(`/${mediaType || media}/${id}`)}
-        className="rounded-lg cursor-pointer bg-indigo-200"
+        className="rounded-lg cursor-pointer"
       />
     </>
   );
