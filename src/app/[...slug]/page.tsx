@@ -60,37 +60,31 @@ export default function Page({
   });
 
   const videolink: string = VideoFn(media, id);
-  const {
-    data: VideosData,
-    isLoading: videosLoading,
-    isSuccess: VideosSuccess,
-  } = useQuery<VideoType>({
+  const { data: VideosData, isLoading: videosLoading } = useQuery<VideoType>({
     queryKey: ["videos", params.slug[1]],
     enabled: castsSuccess,
     queryFn: () => fetchData(videolink),
   });
 
   const similarlink: string = SimilarFn(media, id);
-  const {
-    data: SimilarData,
-    isLoading: similarLoading,
-    isSuccess: SimilarSuccess,
-  } = useQuery<SimilarType>({
-    queryKey: ["similar", params.slug[1]],
-    enabled: VideosSuccess,
-    queryFn: () => fetchData(similarlink),
-  });
+  const { data: SimilarData, isLoading: similarLoading } =
+    useQuery<SimilarType>({
+      queryKey: ["similar", params.slug[1]],
+      queryFn: () => fetchData(similarlink),
+    });
 
   const recommendationlink: string = RecommendationFn(media, id);
   const { data: RecommendationData, isLoading: recommendationLoading } =
     useQuery<SimilarType>({
       queryKey: ["recommendation", params.slug[1]],
-      enabled: SimilarSuccess,
       queryFn: () => fetchData(recommendationlink),
     });
 
   if (isLoading) {
+    document.body.style.overflow = "hidden";
     return <DetailsLoading />;
+  } else {
+    document.body.style.overflowY = "auto";
   }
 
   function formatRuntime(minutes: number) {
@@ -115,8 +109,9 @@ export default function Page({
   return (
     <Container>
       <div className="flex flex-col gap-10 mb-10">
-        <section className="mt-10 flex justify-center gap-10">
-          <div className="relative w-[30%]">
+        {/* Movie/Show Details Section  */}
+        <section className="mt-10 flex  gap-10 min-h-[400px] pl-1 py-3">
+          <div className="relative w-[32%] rounded-lg">
             {data?.poster_path ? (
               <Image
                 src={
@@ -137,7 +132,7 @@ export default function Page({
             )}
           </div>
 
-          <div className="relative flex flex-col gap-6 w-[60%]">
+          <div className="relative w-full flex flex-col gap-6 pr-10">
             <div className="flex flex-col gap-2">
               <h1 className="font-medium text-xl tracking-wide">
                 {data?.title || data?.original_title || data?.name}
@@ -188,7 +183,7 @@ export default function Page({
               ) : null}
             </div>
 
-            <div className="flex justify-between items-center border-b-[1px] pb-2 border-light">
+            <div className="flex gap-10 items-center border-b-[1px] pb-2 border-light">
               {data?.status ? (
                 <div className="flex gap-2 items-center">
                   <p className="tracking-wide text-sm">Status:</p>
@@ -212,28 +207,45 @@ export default function Page({
             <Crews data={CastsCrews} loading={castsLoading} />
           </div>
         </section>
-        <section className="flex flex-col gap-5">
-          <h1 className="text-lg tracking-wider font-semibold">Top Casts :</h1>
-          <Casts data={CastsCrews} loading={castsLoading} />
-        </section>
-        <section>
-          <Videos vidData={VideosData} loading={videosLoading} />
-        </section>
-        <section>
-          <Similar
-            media={String(params.slug[0])}
-            data={SimilarData}
-            loading={similarLoading}
-          />
-        </section>
-
-        <section>
-          <Recommedation
-            media={String(params.slug[0])}
-            data={RecommendationData}
-            loading={recommendationLoading}
-          />
-        </section>
+        {/* Movie/Show Casts Section */}
+        {CastsCrews && CastsCrews.cast.length > 0 ? (
+          <section className="flex flex-col gap-5 min-h-[250px]">
+            {castsLoading ? (
+              <h1 className="bg-gray-500 w-[100px] h-[26px] animate-pulse rounded-md"></h1>
+            ) : (
+              <h1 className="text-lg tracking-wider font-semibold">
+                Top Casts :
+              </h1>
+            )}
+            <Casts data={CastsCrews} loading={castsLoading} />
+          </section>
+        ) : null}
+        {/* Movie/Show Related Videos Section */}
+        {VideosData && VideosData.results.length > 0 ? (
+          <section className="min-h-[220px]">
+            <Videos vidData={VideosData} loading={videosLoading} />
+          </section>
+        ) : null}
+        {/* Similar Movies/Show Section */}
+        {SimilarData && SimilarData.results.length > 0 ? (
+          <section className="min-h-[310px]">
+            <Similar
+              media={String(params.slug[0])}
+              data={SimilarData}
+              loading={similarLoading}
+            />
+          </section>
+        ) : null}
+        {/* Recommendation Movie/Shows  Section  */}
+        {RecommendationData && RecommendationData.results.length > 0 ? (
+          <section className="min-h-[310px]">
+            <Recommedation
+              media={String(params.slug[0])}
+              data={RecommendationData}
+              loading={recommendationLoading}
+            />
+          </section>
+        ) : null}
       </div>
     </Container>
   );

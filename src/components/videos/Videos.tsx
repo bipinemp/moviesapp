@@ -48,7 +48,7 @@ export default function Videos({
                     loading="lazy"
                   />
                 </div>
-                <div className="text-[0.75rem] tracking-wide text-light">
+                <div className="text-[0.75rem] w-[180px] tracking-wide text-light">
                   {video.name}
                 </div>
               </div>

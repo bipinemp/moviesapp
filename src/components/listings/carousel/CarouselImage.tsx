@@ -3,7 +3,7 @@
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/navigation";
 
-export default async function CarouselImage({
+export default function CarouselImage({
   posterUrl,
   id,
   mediaType,
