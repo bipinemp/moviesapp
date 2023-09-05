@@ -166,30 +166,6 @@ const ExploreData = ({ media_type }: { media_type: string }) => {
                         onLoadingComplete={() => setImg(false)}
                         quality={20}
                       />
-                      <div className="w-10 absolute bottom-3 -left-1 border-[2px] border-white rounded-full">
-                        {movie.vote_average ? (
-                          <CircularProgressbar
-                            value={movie.vote_average}
-                            maxValue={10}
-                            text={`${movie.vote_average.toFixed(1)}`}
-                            background
-                            backgroundPadding={4}
-                            className="font-bold"
-                            styles={buildStyles({
-                              pathColor:
-                                movie.vote_average < 5
-                                  ? "red"
-                                  : movie.vote_average < 7
-                                  ? "orange"
-                                  : "green",
-                              textColor: "black",
-                              textSize: "35px",
-                              backgroundColor: "white",
-                              trailColor: "transparent",
-                            })}
-                          />
-                        ) : null}
-                      </div>
                     </Link>
                   </div>
                 );

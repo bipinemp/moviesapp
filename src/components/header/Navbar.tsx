@@ -38,9 +38,9 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div>
+      <Link href={"/search"}>
         <BiSearch size={30} className="cursor-pointer" />
-      </div>
+      </Link>
     </nav>
   );
 }

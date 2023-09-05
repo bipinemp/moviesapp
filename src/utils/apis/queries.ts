@@ -38,4 +38,24 @@ export async function fetchInfiniteData(
   }
 }
 
+export async function fetchInfiniteSearchResults(
+  searchInput: string,
+  pageParam: number
+) {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/search/multi?query=${searchInput}&page=${pageParam}`,
+      {
+        headers: {
+          Authorization: `Bearer ${IMDB_TOKEN}`,
+        },
+      }
+    );
+    const data = response.data;
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
 // https://api.themoviedb.org/3/movie/614930?api_key=c3913f726cde9ba73b0b7211ecfc40b9
