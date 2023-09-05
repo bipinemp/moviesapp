@@ -1,3 +1,4 @@
+import Footer from "@/components/footer/Footer";
 import Banner from "@/components/header/Banner";
 import PopularList from "@/components/listings/PopularList";
 import TopRatedList from "@/components/listings/TopRatedList";
@@ -10,6 +11,7 @@ export default function Home() {
       <TrendingList />
       <PopularList />
       <TopRatedList />
+      <Footer />
     </main>
   );
 }

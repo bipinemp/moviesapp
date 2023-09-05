@@ -28,6 +28,7 @@ export interface Movie {
   poster_path: string;
   id: number;
   media_type?: string;
+  vote_average: number;
 }
 
 export interface TVShow {
@@ -37,6 +38,7 @@ export interface TVShow {
   poster_path: string;
   id: number;
   media_type?: string;
+  vote_average: number;
 }
 
 export interface ApiResponse {
@@ -126,6 +128,7 @@ export interface Similar {
   title: string;
   original_title: string;
   media_type?: string;
+  vote_average: number;
 }
 
 // Infinite Movies

@@ -12,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import MoviesLoading from "@/components/details/loading/MoviesLoading";
 import { GenreFn } from "@/utils/resource/links";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
 const ExploreData = ({ media_type }: { media_type: string }) => {
   const [sortOption, setSortOption] = useState<string>();
@@ -95,7 +96,7 @@ const ExploreData = ({ media_type }: { media_type: string }) => {
             <select
               value={sortOption}
               onChange={handleSortChange}
-              className="text-black py-1 pl-2 pr-9 rounded-lg cursor-pointer"
+              className="text-black py-1 pl-2 pr-9 rounded-lg cursor-pointer outline-[3px] outline-transparent border-[3px] border-transparent focus:border-[3px] focus:border-primary focus:outline-[3px] focus:outline-primary"
             >
               <option defaultValue="" disabled selected hidden>
                 Sort By
@@ -110,7 +111,7 @@ const ExploreData = ({ media_type }: { media_type: string }) => {
 
             <select
               onChange={handleGenreChange}
-              className="text-black py-1 pl-2 pr-9 rounded-lg cursor-pointer"
+              className="text-black py-1 pl-2 pr-9 rounded-lg cursor-pointer outline-[3px] outline-transparent border-[3px] border-transparent focus:border-[3px] focus:border-primary focus:outline-[3px] focus:outline-primary"
             >
               <option defaultValue="" disabled selected hidden>
                 Select Genre
@@ -130,7 +131,7 @@ const ExploreData = ({ media_type }: { media_type: string }) => {
 
         {isLoading ? <MoviesLoading /> : null}
 
-        <div className="flex gap-3 flex-wrap justify-center">
+        <div className="flex gap-[11px] flex-wrap justify-center">
           {data &&
             data?.pages.map((page) => page.results).flat().length > 0 &&
             data?.pages
@@ -144,7 +145,10 @@ const ExploreData = ({ media_type }: { media_type: string }) => {
                 )
                   return <div key={movie.id} ref={ref}></div>;
                 return (
-                  <div className="" key={movie.id}>
+                  <div
+                    className="relative transition ease-in-out duration-200 hover:scale-95"
+                    key={movie.id}
+                  >
                     <Link href={`/movie/${movie.id}`}>
                       <Image
                         src={
@@ -155,13 +159,37 @@ const ExploreData = ({ media_type }: { media_type: string }) => {
                         width={150}
                         height={200}
                         alt="movie poster"
-                        className={`mb-5 rounded-lg bg-gray-500 transition ease-in-out duration-200 hover:opacity-70 hover:scale-95${
+                        className={`mb-5 rounded-lg bg-gray-500 hover:opacity-70 ${
                           img ? "bg-gray-500 animate-pulse" : ""
                         }`}
                         loading="lazy"
                         onLoadingComplete={() => setImg(false)}
                         quality={20}
                       />
+                      <div className="w-10 absolute bottom-3 -left-1 border-[2px] border-white rounded-full">
+                        {movie.vote_average ? (
+                          <CircularProgressbar
+                            value={movie.vote_average}
+                            maxValue={10}
+                            text={`${movie.vote_average.toFixed(1)}`}
+                            background
+                            backgroundPadding={4}
+                            className="font-bold"
+                            styles={buildStyles({
+                              pathColor:
+                                movie.vote_average < 5
+                                  ? "red"
+                                  : movie.vote_average < 7
+                                  ? "orange"
+                                  : "green",
+                              textColor: "black",
+                              textSize: "35px",
+                              backgroundColor: "white",
+                              trailColor: "transparent",
+                            })}
+                          />
+                        ) : null}
+                      </div>
                     </Link>
                   </div>
                 );
