@@ -37,6 +37,7 @@ const Page = () => {
   }, [entry]);
 
   if (isLoading) {
+    console.log("Loding movies");
     return <MoviesLoading />;
   }
 
@@ -56,7 +57,7 @@ const Page = () => {
                 )
                   return <div key={movie.id} ref={ref}></div>;
                 return (
-                  <div className="relative w-[180px] h-[270px]" key={movie.id}>
+                  <div className="" key={movie.id}>
                     <Link href={`/movie/${movie.id}`}>
                       <Image
                         src={
@@ -64,9 +65,10 @@ const Page = () => {
                             ? `https://image.tmdb.org/3/t/p/original/${movie.poster_path}`
                             : PosterFallback
                         }
-                        fill
+                        width={150}
+                        height={200}
                         alt="movie poster"
-                        className={`mb-5 rounded-lg bg-gray-500${
+                        className={`mb-5 rounded-lg bg-gray-500 transition ease-in-out duration-200 hover:opacity-70 hover:scale-95${
                           img ? "bg-gray-500 animate-pulse" : ""
                         }`}
                         loading="lazy"

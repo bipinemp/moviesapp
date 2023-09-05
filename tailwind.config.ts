@@ -7,6 +7,9 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    // screens: {
+    // xsm: "380px",
+    // },
     extend: {
       colors: {
         primary: "#FB3B44",

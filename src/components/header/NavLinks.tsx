@@ -3,6 +3,8 @@
 import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useQueryClient } from "@tanstack/react-query";
+import { fetchInfiniteData } from "@/utils/apis/queries";
 
 interface NavLink {
   name: string;
@@ -15,6 +17,26 @@ interface NavLinkProps {
 
 export default function NavLinks({ navLink }: NavLinkProps) {
   const pathname = usePathname();
+  const queryClient = useQueryClient();
+
+  function prefetchData(name: string) {
+    let fetchKey: string;
+    let media: string;
+    if (name === "Movies") {
+      fetchKey = "InfiniteMovies";
+      media = "movie";
+    } else if (name === "TV") {
+      fetchKey = "";
+      media = "tv";
+    } else {
+      fetchKey = "";
+      media = "";
+    }
+    queryClient.prefetchQuery({
+      queryKey: [fetchKey],
+      queryFn: ({ pageParam = 1 }) => fetchInfiniteData(media, pageParam),
+    });
+  }
 
   return (
     <>
@@ -22,6 +44,7 @@ export default function NavLinks({ navLink }: NavLinkProps) {
         <Link
           key={link}
           href={`${link}`}
+          onMouseEnter={() => prefetchData(name)}
           className={`${pathname === link ? "text-white" : "text-light"}`}
         >
           {name}
