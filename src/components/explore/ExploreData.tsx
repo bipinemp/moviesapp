@@ -79,7 +79,7 @@ const ExploreData = ({
     if (entry?.isIntersecting) {
       fetchNextPage();
     }
-  }, [entry]);
+  }, [entry, fetchNextPage]);
 
   function handleSortChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const selectedOption = e.target.value;
