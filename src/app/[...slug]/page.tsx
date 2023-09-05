@@ -107,7 +107,7 @@ export default function Page({
     <Container>
       <div className="flex flex-col gap-10 mb-10">
         {/* Movie/Show Details Section  */}
-        <section className="mt-10 flex  gap-10 min-h-[400px] pl-1 py-3">
+        <section className="mt-10 flex gap-10 min-h-[400px] pl-1 py-3">
           <div className="relative w-[32%] rounded-lg">
             <Image
               src={
@@ -203,7 +203,7 @@ export default function Page({
           </div>
         </section>
         {/* Movie/Show Casts Section */}
-        {CastsCrews && CastsCrews.cast.length > 0 ? (
+        {CastsCrews && CastsCrews?.cast?.length > 0 ? (
           <section className="flex flex-col gap-5 min-h-[250px]">
             {castsLoading ? (
               <h1 className="bg-gray-500 w-[100px] h-[26px] animate-pulse rounded-md"></h1>

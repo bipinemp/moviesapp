@@ -19,7 +19,7 @@ export default function DetailsLoading() {
 
           <div className="w-[60px] h-[60px] bg-gray-500 animate-pulse rounded-full"></div>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2">
             <h1 className="bg-gray-500 animate-pulse w-[100px] h-[20px] rounded-md"></h1>
             <div className="flex flex-col gap-2">
               <p className="bg-gray-500 animate-pulse w-[500px] h-[5px] rounded-md"></p>
@@ -30,36 +30,36 @@ export default function DetailsLoading() {
             </div>
           </div>
 
-          <div className="flex justify-between items-center pb-2 border-light">
+          <div className="flex gap-10 items-center pb-2 border-light">
             <div className="flex gap-2 items-center">
-              <p className="bg-gray-500 animate-pulse w-[100px] h-[20px] rounded-md"></p>
-              <p className="bg-gray-500 animate-pulse w-[100px] h-[20px] rounded-md"></p>
+              <p className="bg-gray-500 animate-pulse w-[70px] h-[15px] rounded-md"></p>
+              <p className="bg-gray-500 animate-pulse w-[70px] h-[15px] rounded-md"></p>
             </div>
             <div className="flex gap-2 items-center">
-              <p className="bg-gray-500 animate-pulse w-[100px] h-[20px] rounded-md"></p>
-              <p className="bg-gray-500 animate-pulse w-[100px] h-[20px] rounded-md"></p>
+              <p className="bg-gray-500 animate-pulse w-[70px] h-[15px] rounded-md"></p>
+              <p className="bg-gray-500 animate-pulse w-[70px] h-[15px] rounded-md"></p>
             </div>
             <div className="flex gap-2 items-center">
-              <p className="bg-gray-500 animate-pulse w-[100px] h-[20px] rounded-md"></p>
-              <p className="bg-gray-500 animate-pulse w-[100px] h-[20px] rounded-md"></p>
-            </div>
-          </div>
-
-          <div className="flex justify-between items-center pb-2 border-light">
-            <div className="flex gap-2 items-center">
-              <p className="bg-gray-500 animate-pulse w-[100px] h-[20px] rounded-md"></p>
-              <p className="bg-gray-500 animate-pulse w-[100px] h-[20px] rounded-md"></p>
+              <p className="bg-gray-500 animate-pulse w-[70px] h-[15px] rounded-md"></p>
+              <p className="bg-gray-500 animate-pulse w-[70px] h-[15px] rounded-md"></p>
             </div>
           </div>
 
           <div className="flex justify-between items-center pb-2 border-light">
             <div className="flex gap-2 items-center">
-              <p className="bg-gray-500 animate-pulse w-[100px] h-[20px] rounded-md"></p>
-              <p className="bg-gray-500 animate-pulse w-[100px] h-[20px] rounded-md"></p>
+              <p className="bg-gray-500 animate-pulse w-[60px] h-[10px] rounded-md"></p>
+              <p className="bg-gray-500 animate-pulse w-[60px] h-[10px] rounded-md"></p>
+              <p className="bg-gray-500 animate-pulse w-[60px] h-[10px] rounded-md"></p>
             </div>
           </div>
 
-          <h1 className="bg-gray-500 animate-pulse w-[100px] h-[15px] rounded-md"></h1>
+          <div className="flex justify-between items-center pb-2 border-light">
+            <div className="flex gap-2 items-center">
+              <p className="bg-gray-500 animate-pulse w-[60px] h-[10px] rounded-md"></p>
+              <p className="bg-gray-500 animate-pulse w-[60px] h-[10px] rounded-md"></p>
+              <p className="bg-gray-500 animate-pulse w-[60px] h-[10px] rounded-md"></p>
+            </div>
+          </div>
         </div>
       </section>
     </Container>

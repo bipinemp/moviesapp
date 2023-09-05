@@ -23,10 +23,6 @@ export default function Navbar() {
       name: "TV",
       link: "/tv",
     },
-    {
-      name: "My List",
-      link: "/mylist",
-    },
   ];
 
   return (
