@@ -129,7 +129,6 @@ const Page = () => {
               .map((page) => page.results)
               .flat()
               .filter((movie) => movie.id !== 1174030)
-              .filter((movie) => movie.poster_path !== null)
               .map((movie, i) => {
                 if (
                   i ===
@@ -140,7 +139,11 @@ const Page = () => {
                   <div className="" key={movie.id}>
                     <Link href={`/movie/${movie.id}`}>
                       <Image
-                        src={`https://image.tmdb.org/3/t/p/original/${movie.poster_path}`}
+                        src={
+                          movie.poster_path !== null
+                            ? `https://image.tmdb.org/3/t/p/original/${movie.poster_path}`
+                            : PosterFallback
+                        }
                         width={150}
                         height={200}
                         alt="movie poster"
