@@ -3,10 +3,10 @@ import Container from "@/components/containers/Container";
 export default function DetailsLoading() {
   return (
     <Container>
-      <section className="mt-10 flex justify-center gap-10 mb-10">
-        <div className="relative w-[30%]  rounded-lg bg-gray-500 animate-pulse"></div>
+      <section className="mt-10 flex gap-10 min-h-[400px] pl-1 py-3">
+        <div className="relative w-[32%] h-[402px] rounded-lg bg-gray-500 animate-pulse"></div>
 
-        <div className="relative flex flex-col gap-6 w-[60%]">
+        <div className="relative w-full flex flex-col gap-6 pr-10">
           <div className="flex flex-col gap-2">
             <h1 className="w-[220px] h-[20px] bg-gray-500 animate-pulse rounded-md"></h1>
             <p className="w-[200px] h-[10px] bg-gray-500 animate-pulse rounded-md"></p>

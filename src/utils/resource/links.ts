@@ -35,5 +35,9 @@ export function RecommendationFn(type: string | number, id: number | string) {
   return `/${type}/${id}/recommendations`;
 }
 
+export function GenreFn(type: string) {
+  return `/genre/${type}/list`;
+}
+
 // /mediatype/id/videos
 // /mediatype/id/credits

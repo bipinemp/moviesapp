@@ -16,7 +16,11 @@ export async function fetchData(url: string) {
   }
 }
 
-export async function fetchInfiniteData(media: string, pageNum: number) {
+export async function fetchInfiniteData(
+  media: string,
+  pageNum: number,
+  params?: any
+) {
   try {
     const response = await axios.get(
       `https://api.themoviedb.org/3/discover/${media}?page=${pageNum}`,
@@ -24,6 +28,7 @@ export async function fetchInfiniteData(media: string, pageNum: number) {
         headers: {
           Authorization: `Bearer ${IMDB_TOKEN}`,
         },
+        params,
       }
     );
     const data = response.data;

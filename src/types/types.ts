@@ -152,3 +152,12 @@ export interface InfiniteMovie {
   vote_average: number;
   vote_count: number;
 }
+
+// For Genres in Dropdown Menu of Movies/TV shows
+export interface Genre {
+  genres: GenreActual[];
+}
+export interface GenreActual {
+  id: number;
+  name: string;
+}

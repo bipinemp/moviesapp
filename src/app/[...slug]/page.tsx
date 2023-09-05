@@ -132,14 +132,16 @@ export default function Page({
               </h1>
               <p className="text-light italic text-sm">{data?.tagline}</p>
               <div className="flex gap-3">
-                {data?.genres.map((genre) => (
-                  <p
-                    key={genre.id}
-                    className="bg-darkprimary py-1 px-2 tracking-wide rounded-md text-xs font-semibold"
-                  >
-                    {genre.name}
-                  </p>
-                ))}
+                {data?.genres &&
+                  data?.genres.length > 0 &&
+                  data?.genres.map((genre) => (
+                    <p
+                      key={genre.id}
+                      className="bg-darkprimary py-1 px-2 tracking-wide rounded-md text-xs font-semibold"
+                    >
+                      {genre.name}
+                    </p>
+                  ))}
               </div>
             </div>
 
@@ -220,7 +222,7 @@ export default function Page({
           </section>
         ) : null}
         {/* Border between Movies details and similar and recommendation  */}
-        {SimilarData && SimilarData?.results.length > 0 ? (
+        {SimilarData && SimilarData?.results?.length > 0 ? (
           <hr className="border-light"></hr>
         ) : null}
         {/* Similar Movies/Show Section */}
