@@ -1,11 +1,7 @@
-import React from "react";
+import ExploreData from "@/components/explore/ExploreData";
 
 const page = () => {
-  return (
-    <div>
-      <h1>TV</h1>
-    </div>
-  );
+  return <ExploreData media_type="tv" />;
 };
 
 export default page;
