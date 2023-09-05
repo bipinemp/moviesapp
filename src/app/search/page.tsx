@@ -2,7 +2,6 @@
 
 import Container from "@/components/containers/Container";
 import PosterFallback from "@/assets/no-poster.png";
-import MoviesLoading from "@/components/details/loading/MoviesLoading";
 
 import { ApiResponse } from "@/types/types";
 import { fetchInfiniteSearchResults } from "@/utils/apis/queries";
@@ -11,7 +10,6 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
 export default function page() {
   const [img, setImg] = useState<boolean>(true);
@@ -48,10 +46,6 @@ export default function page() {
       fetchNextPage();
     }
   }, [entry]);
-
-  useEffect(() => {
-    refetch();
-  }, []);
 
   return (
     <Container>

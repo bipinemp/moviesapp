@@ -14,7 +14,13 @@ import MoviesLoading from "@/components/details/loading/MoviesLoading";
 import { GenreFn } from "@/utils/resource/links";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
-const ExploreData = ({ media_type }: { media_type: string }) => {
+const ExploreData = ({
+  media_type,
+  queryKey,
+}: {
+  media_type: string;
+  queryKey: string;
+}) => {
   const [sortOption, setSortOption] = useState<string>();
   const [genreOption, setGenreOption] = useState<number>();
 
@@ -51,7 +57,7 @@ const ExploreData = ({ media_type }: { media_type: string }) => {
 
   const { fetchNextPage, isFetchingNextPage, data, isLoading, isError, error } =
     useInfiniteQuery<InfiniteMovies>({
-      queryKey: ["infiniteMovies", sortOption, genreOption],
+      queryKey: [queryKey, sortOption, genreOption],
       queryFn: ({ pageParam = 1 }) =>
         fetchInfiniteData(media_type, pageParam, {
           ...(sortOption && { sort_by: sortOption }),

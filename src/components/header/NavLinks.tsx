@@ -26,7 +26,7 @@ export default function NavLinks({ navLink }: NavLinkProps) {
       fetchKey = "InfiniteMovies";
       media = "movie";
     } else if (name === "TV") {
-      fetchKey = "";
+      fetchKey = "InfiniteTv";
       media = "tv";
     } else {
       fetchKey = "";
