@@ -11,7 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
-export default function Page() {
+const Page = () => {
   const [img, setImg] = useState<boolean>(true);
   const [searchInput, setSearchInput] = useState<string>("");
   const lastResultRef = useRef(null);
@@ -148,4 +148,5 @@ export default function Page() {
       </div>
     </Container>
   );
-}
+};
+export default Page;
