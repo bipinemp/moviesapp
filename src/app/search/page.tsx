@@ -37,22 +37,16 @@ const Page = () => {
     refetch();
   }
 
-  const {
-    data,
-    fetchNextPage,
-    isFetchingNextPage,
-    isLoading,
-    refetch,
-    isFetching,
-  } = useInfiniteQuery<ApiResponse>({
-    queryKey: ["search"],
-    queryFn: ({ pageParam = 1 }) =>
-      fetchInfiniteSearchResults(searchInput, pageParam),
-    getNextPageParam: (_, pages) => {
-      return pages.length + 1;
-    },
-    enabled: false,
-  });
+  const { data, fetchNextPage, isFetchingNextPage, refetch, isFetching } =
+    useInfiniteQuery<ApiResponse>({
+      queryKey: ["search"],
+      queryFn: ({ pageParam = 1 }) =>
+        fetchInfiniteSearchResults(searchInput, pageParam),
+      getNextPageParam: (_, pages) => {
+        return pages.length + 1;
+      },
+      enabled: false,
+    });
 
   useEffect(() => {
     if (entry?.isIntersecting) {
