@@ -1,8 +1,11 @@
+"use client";
+
 import { BiSearch } from "react-icons/bi";
 import Image from "next/image";
 import Logo from "../../../public/logoo.png";
 import NavLinks from "./NavLinks";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface NavLink {
   name: string;
@@ -10,6 +13,7 @@ interface NavLink {
 }
 
 export default function Navbar() {
+  const pathname = usePathname();
   const navLink: NavLink[] = [
     {
       name: "Home",
@@ -22,6 +26,10 @@ export default function Navbar() {
     {
       name: "TV",
       link: "/tv",
+    },
+    {
+      name: "",
+      link: "/search",
     },
   ];
 
@@ -39,7 +47,12 @@ export default function Navbar() {
       </div>
 
       <Link href={"/search"}>
-        <BiSearch size={30} className="cursor-pointer" />
+        <BiSearch
+          size={30}
+          className={`cursor-pointer ${
+            pathname === "/search" ? "text-white" : ""
+          }`}
+        />
       </Link>
     </nav>
   );
