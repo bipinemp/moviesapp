@@ -33,7 +33,7 @@ export default function CarouselImage({
           onLoadingComplete={() => setImg(false)}
         />
         <div className="w-12 absolute bottom-2 transition duration-200 -left-1 border-[2px] border-white rounded-full">
-          {!img && rating ? (
+          {rating ? (
             <CircularProgressbar
               value={rating}
               maxValue={10}
