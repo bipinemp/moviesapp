@@ -6,12 +6,13 @@ import PosterFallback from "@/assets/no-poster.png";
 import { ApiResponse } from "@/types/types";
 import { fetchInfiniteSearchResults } from "@/utils/apis/queries";
 import { useIntersection } from "@mantine/hooks";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
 const Page = () => {
+  const queryClient = useQueryClient();
   const [img, setImg] = useState<boolean>(true);
   const [searchInput, setSearchInput] = useState<string>("");
   const lastResultRef = useRef(null);
@@ -21,25 +22,37 @@ const Page = () => {
     threshold: 1,
   });
 
+  useEffect(() => {
+    queryClient.removeQueries(["search"]);
+    refetch();
+  }, []);
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchInput(e.target.value);
   }
 
   function handleSearchSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    queryClient.removeQueries(["search"]);
     refetch();
   }
 
-  const { data, fetchNextPage, isFetchingNextPage, isLoading, refetch } =
-    useInfiniteQuery<ApiResponse>({
-      queryKey: ["search"],
-      queryFn: ({ pageParam = 1 }) =>
-        fetchInfiniteSearchResults(searchInput, pageParam),
-      getNextPageParam: (_, pages) => {
-        return pages.length + 1;
-      },
-      enabled: false,
-    });
+  const {
+    data,
+    fetchNextPage,
+    isFetchingNextPage,
+    isLoading,
+    refetch,
+    isFetching,
+  } = useInfiniteQuery<ApiResponse>({
+    queryKey: ["search"],
+    queryFn: ({ pageParam = 1 }) =>
+      fetchInfiniteSearchResults(searchInput, pageParam),
+    getNextPageParam: (_, pages) => {
+      return pages.length + 1;
+    },
+    enabled: false,
+  });
 
   useEffect(() => {
     if (entry?.isIntersecting) {
@@ -49,7 +62,7 @@ const Page = () => {
 
   return (
     <Container>
-      <div className="mt-5 flex flex-col gap-5">
+      <div className="mt-5 flex flex-col gap-4">
         <form
           onSubmit={handleSearchSubmit}
           className="flex w-[500px] mx-auto border-[2px] rounded-xl"
@@ -61,15 +74,26 @@ const Page = () => {
             className="w-full bg-transparent py-3 pl-3 text-white/70 pr-5 focus:outline-none tracking-wider placeholder:text-[0.85rem]"
             placeholder="Enter Movie/Show to Search..."
           />
-          <button className="px-5 bg-gradient-to-r from-red-500 rounded-r-[0.6rem] to-orange-500">
-            Search
+          <button className="font-semibold tracking-wider px-5 bg-gradient-to-r from-red-500 rounded-r-[0.6rem] to-orange-500">
+            {isFetching ? "Searching..." : "Search"}
           </button>
         </form>
-        {/* {isLoading ? <MoviesLoading /> : null} */}
+
+        {isFetching ? (
+          <div className="relative w-full text-center text-xl m-2">
+            <div
+              className="text-center m-2 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-darkprimary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+              role="status"
+            ></div>
+          </div>
+        ) : null}
+
         <p className="text-2xl text-center mt-10 text-primary tracking-wider font-semibold">
           {data && data?.pages?.map((page) => page.results).flat().length > 0
             ? ""
-            : "Nothing to Show please search :)"}
+            : !isFetching
+            ? "Nothing to Show please search :)"
+            : ""}
         </p>
         <div className="flex gap-[11px] flex-wrap justify-center">
           {data &&
@@ -136,14 +160,14 @@ const Page = () => {
                   </div>
                 );
               })}
-          <span className="relative w-full text-center text-xl m-2">
+          <div className="relative w-full text-center text-xl m-2">
             {isFetchingNextPage ? (
               <div
                 className="text-center m-2 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-darkprimary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
                 role="status"
               ></div>
             ) : null}
-          </span>
+          </div>
         </div>
       </div>
     </Container>
