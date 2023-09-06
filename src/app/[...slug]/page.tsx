@@ -125,7 +125,7 @@ export default function Page({
             />
           </div>
 
-          <div className="relative w-full flex flex-col gap-6 pr-10">
+          <div className="relative max-w-[68%] w-full flex flex-col gap-6 pr-10">
             <div className="flex flex-col gap-2">
               <h1 className="font-medium text-xl tracking-wide">
                 {data?.title || data?.original_title || data?.name}

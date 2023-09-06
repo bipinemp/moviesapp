@@ -46,7 +46,7 @@ function Crews({
         </div>
       ) : null}
       {writer && writer.length > 0 ? (
-        <div className="flex items-center gap-2 border-b-[1px] border-light pb-2">
+        <div className="flex flex-wrap items-center gap-2 border-b-[1px] border-light pb-2">
           <p className="tracking-wide text-sm">Writer: </p>
           {writer.map((crew) => {
             if (!uniqueWriterNames.includes(crew.original_name)) {
