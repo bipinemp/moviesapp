@@ -4,12 +4,12 @@ import { BsFacebook, BsInstagram, BsTwitter, BsYoutube } from "react-icons/bs";
 
 export default function Footer() {
   return (
-    <footer className="bg-white mt-32 text-black flex flex-col gap-5 py-10 px-32 2xl:px-[32rem] rounded-tl-3xl rounded-tr-3xl">
+    <footer className="bg-white mt-32 text-black flex flex-col gap-5 py-10 px-5 sm:px-10 xl:px-[10rem] 2xl:px-[30rem] rounded-tl-3xl rounded-tr-3xl">
       <div>
         <Image src={Logo} width={40} height={40} alt="website logo" />
       </div>
-      <div className="flex justify-between font-medium text-black/60">
-        <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-5 foot:flex-row justify-between font-medium text-black/60 foot:text-[0.8rem] lg:text-base">
+        <div className="flex flex-col border-b-[1px] border-black/25 pb-2 items-start gap-2 foot:pb-0 foot:border-none">
           <a id="footerlinks" href="#">
             Audio and Subtitles
           </a>
@@ -23,7 +23,7 @@ export default function Footer() {
             Contact Us
           </a>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col items-start border-b-[1px] border-black/25 pb-2 gap-2 foot:px-2 foot:pb-0 foot:border-none">
           <a id="footerlinks" href="#">
             Audio Description
           </a>
@@ -34,7 +34,7 @@ export default function Footer() {
             Legal Notices
           </a>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 border-b-[1px] border-black/25 pb-2 foot:pb-0 foot:border-none">
           <a id="footerlinks" href="#">
             Audio Description
           </a>
@@ -45,7 +45,10 @@ export default function Footer() {
             Cookie Preferences
           </a>
         </div>
-        <div className="flex flex-col gap-2">
+        <div
+          className="flex flex-col gap-2 border-b-[1px] border-black/25 pb-2 foot:pb-0 foot:border-none
+         foot:pl-2"
+        >
           <a id="footerlinks" href="#">
             Gift Cards
           </a>

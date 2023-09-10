@@ -94,15 +94,15 @@ const ExploreData = ({
   return (
     <Container>
       <div>
-        <div className="flex gap-10 items-center mt-5 mb-5 ml-2">
-          <h1 className="text-2xl font-semibold tracking-wide">
+        <div className="flex flex-col sm:flex-row gap-5 sm:gap-10 items-center mt-2 sm:mt-5 mb-5 ml-2">
+          <h1 className="text-[1.1rem] md:text-2xl font-semibold tracking-wide">
             {media_type === "movie" ? "Explore Movies" : "Explore TV Shows"} :
           </h1>
-          <div className="flex gap-4">
+          <div className="flex gap-2 sm:gap-4">
             <select
               value={sortOption}
               onChange={handleSortChange}
-              className="text-black py-1 pl-2 pr-9 rounded-lg cursor-pointer outline-[3px] outline-transparent border-[3px] border-transparent focus:border-[3px] focus:border-primary focus:outline-[3px] focus:outline-primary"
+              className="text-black py-1 pl-1 text-[0.75rem] sm:text-base rounded-lg cursor-pointer outline-[3px] outline-transparent border-[3px] border-transparent focus:border-[3px] focus:border-primary focus:outline-[3px] focus:outline-primary"
             >
               <option defaultValue="" disabled selected hidden>
                 Sort By
@@ -117,7 +117,7 @@ const ExploreData = ({
 
             <select
               onChange={handleGenreChange}
-              className="text-black py-1 pl-2 pr-9 rounded-lg cursor-pointer outline-[3px] outline-transparent border-[3px] border-transparent focus:border-[3px] focus:border-primary focus:outline-[3px] focus:outline-primary"
+              className="text-black py-1 pl-1 text-[0.75rem] sm:text-base rounded-lg cursor-pointer outline-[3px] outline-transparent border-[3px] border-transparent focus:border-[3px] focus:border-primary focus:outline-[3px] focus:outline-primary"
             >
               <option defaultValue="" disabled selected hidden>
                 Select Genre

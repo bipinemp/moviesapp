@@ -32,8 +32,8 @@ export default function TopRatedList() {
   return (
     <Container>
       <section className="flex h-[310px] flex-col gap-3 rounded-lg mt-10">
-        <div className="flex justify-between">
-          <h1 className="font-bold text-2xl opacity-80 tracking-wide  text-light">
+        <div className="flex justify-between items-center">
+          <h1 className="font-bold text-[1rem] sm:text-2xl opacity-80 tracking-wide  text-light">
             Top Rated
           </h1>
 
@@ -49,7 +49,7 @@ export default function TopRatedList() {
                 e.preventDefault();
                 handleClick("movie");
               }}
-              className={`z-20 py-1 px-5 font-bold tracking-wide ${
+              className={`z-20 text-[0.8rem] sm:text-base py-1 px-2 sm:px-5 font-semibold tracking-wide ${
                 active === "movie" ? "bg-primarydark" : ""
               }`}
             >
@@ -61,7 +61,7 @@ export default function TopRatedList() {
                 e.preventDefault();
                 handleClick("tv");
               }}
-              className={`z-20 py-1 px-5 font-bold tracking-wide ${
+              className={`z-20 text-[0.8rem] sm:text-base py-1 px-2 sm:px-5 font-semibold tracking-wide ${
                 active === "tv" ? "bg-primarydark" : ""
               }`}
             >
