@@ -107,8 +107,8 @@ export default function Page({
     <Container>
       <div className="flex flex-col gap-10 mb-10">
         {/* Movie/Show Details Section  */}
-        <section className="mt-10 flex gap-10 min-h-[400px] pl-1 py-3">
-          <div className="relative w-[32%] rounded-lg">
+        <section className="mt-5 foot:mt-10 flex flex-col lg:flex-row gap-10 min-h-[400px] pl-1 py-3">
+          <div className="relative w-[240px] h-[350px] lg:h-auto foot:w-[300px] emd:w-[32%] rounded-lg">
             <Image
               src={
                 data?.poster_path !== null
@@ -125,7 +125,7 @@ export default function Page({
             />
           </div>
 
-          <div className="relative max-w-[68%] w-full flex flex-col gap-6 pr-10">
+          <div className="relative w-full emd:max-w-[68%] flex flex-col gap-6 emd:pr-10">
             <div className="flex flex-col gap-2">
               <h1 className="font-medium text-xl tracking-wide">
                 {data?.title || data?.original_title || data?.name}
@@ -178,7 +178,7 @@ export default function Page({
               ) : null}
             </div>
 
-            <div className="flex gap-10 items-center border-b-[1px] pb-2 border-light">
+            <div className="flex flex-col items-start foot:flex-row gap-2 emd:gap-10 emd:items-center border-b-[1px] pb-2 border-light">
               {data?.status ? (
                 <div className="flex gap-2 items-center">
                   <p className="tracking-wide text-sm">Status:</p>
@@ -237,7 +237,7 @@ export default function Page({
         ) : null}
         {/* Recommendation Movie/Shows  Section  */}
         {RecommendationData && RecommendationData.results.length > 0 ? (
-          <section className="min-h-[310px]">
+          <section className="min-h-[310px] mb-10">
             <Recommedation
               media={String(params.slug[0])}
               data={RecommendationData}
