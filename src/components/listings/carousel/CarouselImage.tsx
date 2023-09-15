@@ -2,7 +2,6 @@
 
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
 export default function CarouselImage({
@@ -18,7 +17,6 @@ export default function CarouselImage({
   media: string;
   rating?: number;
 }) {
-  const [img, setImg] = useState<boolean>(true);
   return (
     <>
       <Link href={`/${mediaType || media}/${id}`}>
@@ -27,10 +25,7 @@ export default function CarouselImage({
           alt="movie_tvshow_poster"
           width={150}
           height={200}
-          className={`rounded-lg cursor-pointer min-h-[230px] opacity-90${
-            img ? "bg-gray-500 animate-pulse" : ""
-          }`}
-          onLoadingComplete={() => setImg(false)}
+          className="rounded-lg cursor-pointer min-h-[230px] opacity-90 bg-gray-600"
         />
         <div className="w-9 sm:w-12 absolute bottom-2 transition duration-200 -left-1 border-[2px] border-white rounded-full">
           {rating ? (
