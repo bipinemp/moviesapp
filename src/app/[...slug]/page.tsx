@@ -225,26 +225,28 @@ export default function Page({
         {SimilarData && SimilarData?.results?.length > 0 ? (
           <hr className="border-light"></hr>
         ) : null}
-        {/* Similar Movies/Show Section */}
-        {SimilarData && SimilarData.results.length > 0 ? (
-          <section className="min-h-[310px]">
-            <Similar
-              media={String(params.slug[0])}
-              data={SimilarData}
-              loading={similarLoading}
-            />
-          </section>
-        ) : null}
-        {/* Recommendation Movie/Shows  Section  */}
-        {RecommendationData && RecommendationData.results.length > 0 ? (
-          <section className="min-h-[310px] mb-10">
-            <Recommedation
-              media={String(params.slug[0])}
-              data={RecommendationData}
-              loading={recommendationLoading}
-            />
-          </section>
-        ) : null}
+        <div className="flex flex-col">
+          {/* Similar Movies/Show Section */}
+          {SimilarData && SimilarData.results.length > 0 ? (
+            <section className="min-h-[310px] mb-10">
+              <Similar
+                media={String(params.slug[0])}
+                data={SimilarData}
+                loading={similarLoading}
+              />
+            </section>
+          ) : null}
+          {/* Recommendation Movie/Shows  Section  */}
+          {RecommendationData && RecommendationData.results.length > 0 ? (
+            <section className="min-h-[310px] mb-20">
+              <Recommedation
+                media={String(params.slug[0])}
+                data={RecommendationData}
+                loading={recommendationLoading}
+              />
+            </section>
+          ) : null}
+        </div>
       </div>
     </Container>
   );
