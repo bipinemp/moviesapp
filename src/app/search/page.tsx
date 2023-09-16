@@ -59,7 +59,7 @@ const Page = () => {
       <div className="mt-5 flex flex-col gap-4">
         <form
           onSubmit={handleSearchSubmit}
-          className="flex w-[500px] mx-auto border-[2px] rounded-xl"
+          className="flex max-w-[500px] mx-auto border-[2px] rounded-xl"
         >
           <input
             value={searchInput}
@@ -68,7 +68,7 @@ const Page = () => {
             className="w-full bg-transparent py-3 pl-3 text-white/70 pr-5 focus:outline-none tracking-wider placeholder:text-[0.85rem]"
             placeholder="Enter Movie/Show to Search..."
           />
-          <button className="font-semibold tracking-wider px-5 bg-gradient-to-r from-red-500 rounded-r-[0.6rem] to-orange-500">
+          <button className="font-medium sm:font-semibold tracking-wider px-3 sm:px-5 bg-gradient-to-r from-red-500 rounded-r-[0.6rem] to-orange-500">
             {isFetching ? "Searching..." : "Search"}
           </button>
         </form>
@@ -83,10 +83,8 @@ const Page = () => {
         ) : null}
 
         <p className="text-2xl text-center mt-10 text-primary tracking-wider font-semibold">
-          {data && data?.pages?.map((page) => page.results).flat().length > 0
-            ? ""
-            : !isFetching
-            ? "Nothing to Show please search :)"
+          {data?.pages?.map((page) => page.results).flat().length === 0
+            ? "Not Found :)"
             : ""}
         </p>
         <div className="flex gap-[11px] flex-wrap justify-center">
