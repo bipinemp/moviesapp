@@ -45,7 +45,7 @@ export default function NavLinks({ navLink }: NavLinkProps) {
           key={link}
           href={`${link}`}
           onMouseEnter={() => prefetchData(name)}
-          className={`active:bg-gray-600/30 py-1 px-2 rounded-lg select-none ${
+          className={`bg-transparent active:bg-gray-600/30 py-1 px-2 rounded-lg select-none ${
             pathname === link ? "text-white" : "text-light"
           } text-sm sm:text-lg`}
         >
