@@ -51,7 +51,7 @@ export default function TrendingList() {
                 e.preventDefault();
                 handleClick("day");
               }}
-              className={`z-20 text-sm sm:text-base py-1 px-2 sm:px-5 font-semibold tracking-wide ${
+              className={`select-none active:bg-gray-600/30 rounded-full z-20 text-sm sm:text-base py-1 px-2 sm:px-5 font-semibold tracking-wide ${
                 active === "day" ? "bg-primarydark" : ""
               }`}
             >
@@ -63,7 +63,7 @@ export default function TrendingList() {
                 e.preventDefault();
                 handleClick("week");
               }}
-              className={`z-20 text-sm sm:text-base py-1 px-2 sm:px-5 font-semibold tracking-wide ${
+              className={`select-none active:bg-gray-600/30 rounded-full z-20 text-sm sm:text-base py-1 px-2 sm:px-5 font-semibold tracking-wide ${
                 active === "week" ? "bg-primarydark" : ""
               }`}
             >

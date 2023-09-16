@@ -49,7 +49,7 @@ export default function PopularList() {
                 e.preventDefault();
                 handleClick("movie");
               }}
-              className={`z-20 text-[0.8rem] sm:text-base py-1 px-2 sm:px-5 font-semibold tracking-wide ${
+              className={`select-none active:bg-gray-600/30 rounded-full z-20 text-[0.8rem] sm:text-base py-1 px-2 sm:px-5 font-semibold tracking-wide ${
                 active === "movie" ? "bg-primarydark" : ""
               }`}
             >
@@ -61,7 +61,7 @@ export default function PopularList() {
                 e.preventDefault();
                 handleClick("tv");
               }}
-              className={`z-20 text-[0.8rem] sm:text-base py-1 px-2 sm:px-5 font-semibold tracking-wide ${
+              className={`select-none active:bg-gray-600/30 rounded-full z-20 text-[0.8rem] sm:text-base py-1 px-2 sm:px-5 font-semibold tracking-wide ${
                 active === "tv" ? "bg-primarydark" : ""
               }`}
             >

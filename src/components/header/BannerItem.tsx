@@ -24,7 +24,7 @@ export default function BannerItem({
         </p>
         <Link
           href={`movie/${selectedBanner.id}`}
-          className="bg-gradient-to-r from-red-500 to-orange-500 text-[0.8rem] sm:text-[0.8rem] py-2 px-7 sm:px-10 rounded-full shadow-sm tracking-wide hover:scale-95 hover:opacity-90 transition-all ease-in-out shadow-darkprimary w-fit font-bold"
+          className="select-none active:from-red-700 active:to-orange-700 bg-gradient-to-r from-red-500 to-orange-500 text-[0.8rem] sm:text-[0.8rem] py-2 px-7 sm:px-10 rounded-full shadow-sm tracking-wide hover:scale-95 hover:opacity-90 transition-all ease-in-out shadow-darkprimary w-fit font-bold"
         >
           View
         </Link>
