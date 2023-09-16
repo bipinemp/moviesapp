@@ -37,7 +37,7 @@ export default function Navbar() {
             <Image src={Logo} alt="website_logo" width={20} height={20} />
           </div>
         </Link>
-        <div className="flex gap-2 sm:gap-9 ml-4 sm:ml-0 items-center font-medium text-lg">
+        <div className="select-none flex gap-2 sm:gap-9 ml-4 sm:ml-0 items-center font-medium text-lg">
           <NavLinks navLink={navLink} />
         </div>
       </div>
