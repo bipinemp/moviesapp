@@ -51,7 +51,11 @@ export default function Page({
   });
 
   if (isError) {
-    return <h1>Something went wrong</h1>;
+    return (
+      <h1 className="text-center font-bold text-2xl mt-10 text-red-500">
+        Something went wrong
+      </h1>
+    );
   }
 
   const {
