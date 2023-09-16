@@ -16,9 +16,3 @@ export default function BannerImage({
     />
   );
 }
-
-// className = transition-opacity opacity-0 duration-[500ms]
-// onLoadingComplete={(image) => {
-//   image.classList.remove("opacity-0");
-//   image.classList.add("opacity-20");
-// }}

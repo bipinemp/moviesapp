@@ -12,7 +12,7 @@ export async function fetchData(url: string) {
     const data = response.data;
     return data;
   } catch (error) {
-    return error;
+    throw new Error("");
   }
 }
 
@@ -34,7 +34,7 @@ export async function fetchInfiniteData(
     const data = response.data;
     return data;
   } catch (error) {
-    return error;
+    throw new Error("");
   }
 }
 
@@ -54,7 +54,7 @@ export async function fetchInfiniteSearchResults(
     const data = response.data;
     return data;
   } catch (error) {
-    return error;
+    throw new Error("");
   }
 }
 

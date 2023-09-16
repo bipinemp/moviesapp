@@ -26,7 +26,6 @@ import Similar from "@/components/details/Similar";
 import Recommedation from "@/components/details/Recommedation";
 import PosterFallback from "@/assets/no-poster.png";
 import { useState } from "react";
-import Link from "next/link";
 
 export default function Page({
   params,
@@ -42,48 +41,80 @@ export default function Page({
 
   const link: string = CastsFn(media, id);
 
-  const { data, isLoading, isSuccess, isError } = useQuery<DetailsResponse>({
-    queryKey: ["details", params.slug[1]],
-    queryFn: () =>
-      fetchData(
-        `/${params.slug[0]}/${params.slug[1]}?api_key=${process.env.NEXT_PUBLIC_IMDB_KEY}`
-      ),
-  });
+  const { data, isLoading, isSuccess, isError, error } =
+    useQuery<DetailsResponse>({
+      queryKey: ["details", params.slug[1]],
+      queryFn: () =>
+        fetchData(
+          `/${params.slug[0]}/${params.slug[1]}?api_key=${process.env.NEXT_PUBLIC_IMDB_KEY}`
+        ),
+    });
 
   if (isError) {
-    return <h1>Something went wrong</h1>;
+    return <h1>{JSON.stringify(error)}</h1>;
   }
 
   const {
     data: CastsCrews,
     isLoading: castsLoading,
     isSuccess: castsSuccess,
+    isError: isError2,
+    error: error2,
   } = useQuery<CastType>({
     queryKey: ["casts", params.slug[1]],
     enabled: isSuccess,
     queryFn: () => fetchData(link),
   });
 
+  if (isError2) {
+    return <h1>{JSON.stringify(error2)}</h1>;
+  }
+
   const videolink: string = VideoFn(media, id);
-  const { data: VideosData, isLoading: videosLoading } = useQuery<VideoType>({
+  const {
+    data: VideosData,
+    isLoading: videosLoading,
+    isError: isError3,
+    error: error3,
+  } = useQuery<VideoType>({
     queryKey: ["videos", params.slug[1]],
     enabled: castsSuccess,
     queryFn: () => fetchData(videolink),
   });
 
+  if (isError3) {
+    return <h1>{JSON.stringify(error3)}</h1>;
+  }
+
   const similarlink: string = SimilarFn(media, id);
-  const { data: SimilarData, isLoading: similarLoading } =
-    useQuery<SimilarType>({
-      queryKey: ["similar", params.slug[1]],
-      queryFn: () => fetchData(similarlink),
-    });
+  const {
+    data: SimilarData,
+    isLoading: similarLoading,
+    isError: isError4,
+    error: error4,
+  } = useQuery<SimilarType>({
+    queryKey: ["similar", params.slug[1]],
+    queryFn: () => fetchData(similarlink),
+  });
+
+  if (isError4) {
+    return <h1>{JSON.stringify(error4)}</h1>;
+  }
 
   const recommendationlink: string = RecommendationFn(media, id);
-  const { data: RecommendationData, isLoading: recommendationLoading } =
-    useQuery<SimilarType>({
-      queryKey: ["recommendation", params.slug[1]],
-      queryFn: () => fetchData(recommendationlink),
-    });
+  const {
+    data: RecommendationData,
+    isLoading: recommendationLoading,
+    isError: isError5,
+    error: error5,
+  } = useQuery<SimilarType>({
+    queryKey: ["recommendation", params.slug[1]],
+    queryFn: () => fetchData(recommendationlink),
+  });
+
+  if (isError5) {
+    return <h1>{JSON.stringify(error5)}</h1>;
+  }
 
   if (isLoading) {
     return <DetailsLoading />;

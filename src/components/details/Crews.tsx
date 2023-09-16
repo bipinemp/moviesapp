@@ -8,12 +8,16 @@ function Crews({
   data: CastType | undefined;
   loading: boolean;
 }) {
-  const director = data?.crew.filter((crew) => crew.job === "Director");
+  if (!data) {
+    return null;
+  }
+
+  const director = data.crew?.filter((crew) => crew.job === "Director");
 
   const writerJobs = ["Screenplay", "Story", "Writer"];
   const uniqueWriterNames: string[] = [];
 
-  const writer = data?.crew.filter((crew) => writerJobs.includes(crew.job));
+  const writer = data.crew?.filter((crew) => writerJobs.includes(crew.job));
 
   if (loading) {
     return (
