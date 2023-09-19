@@ -26,7 +26,6 @@ import Similar from "@/components/details/Similar";
 import Recommedation from "@/components/details/Recommedation";
 import PosterFallback from "@/assets/no-poster.png";
 import { useState } from "react";
-import Link from "next/link";
 
 export default function Page({
   params,
@@ -42,21 +41,13 @@ export default function Page({
 
   const link: string = CastsFn(media, id);
 
-  const { data, isLoading, isSuccess, isError } = useQuery<DetailsResponse>({
+  const { data, isLoading, isSuccess } = useQuery<DetailsResponse>({
     queryKey: ["details", params.slug[1]],
     queryFn: () =>
       fetchData(
         `/${params.slug[0]}/${params.slug[1]}?api_key=${process.env.NEXT_PUBLIC_IMDB_KEY}`
       ),
   });
-
-  if (isError) {
-    return (
-      <h1 className="text-center font-bold text-2xl mt-10 text-red-500">
-        Something went wrong
-      </h1>
-    );
-  }
 
   const {
     data: CastsCrews,
