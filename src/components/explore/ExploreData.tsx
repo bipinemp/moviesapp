@@ -98,7 +98,7 @@ const ExploreData = ({
           <h1 className="text-[1.1rem] md:text-2xl font-semibold tracking-wide">
             {media_type === "movie" ? "Explore Movies" : "Explore TV Shows"} :
           </h1>
-          <div className="flex gap-2 sm:gap-4">
+          <div className="flex flex-col foot:flex-row gap-2 sm:gap-4">
             <select
               value={sortOption}
               onChange={handleSortChange}
@@ -172,6 +172,28 @@ const ExploreData = ({
                         onLoadingComplete={() => setImg(false)}
                         quality={20}
                       />
+                      <div className="w-9 sm:w-12 absolute bottom-2 transition duration-200 border-[2px] border-white rounded-full">
+                        <CircularProgressbar
+                          value={movie?.vote_average}
+                          maxValue={10}
+                          text={`${movie?.vote_average.toFixed(1)}`}
+                          background
+                          backgroundPadding={4}
+                          className="font-bold"
+                          styles={buildStyles({
+                            pathColor:
+                              movie?.vote_average < 5
+                                ? "red"
+                                : movie?.vote_average < 7
+                                ? "orange"
+                                : "green",
+                            textColor: "black",
+                            textSize: "35px",
+                            backgroundColor: "white",
+                            trailColor: "transparent",
+                          })}
+                        />
+                      </div>
                     </Link>
                   </div>
                 );
