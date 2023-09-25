@@ -23,7 +23,7 @@ export default function VideoPopup({
       <div
         className={`fixed w-full h-screen flex justify-center items-center top-0 left-0 ${
           show ? "opacity-100 visible" : "opacity-0 invisible"
-        } z-30`}
+        } z-50`}
       >
         <div
           className={`${
