@@ -103,7 +103,6 @@ export default function Page({
     formattedRuntime = formatRuntime(data?.runtime);
   }
 
-  console.log(data?.poster_path);
   return (
     <Container>
       <div className="flex flex-col gap-10 mb-10">

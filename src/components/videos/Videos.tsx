@@ -7,6 +7,7 @@ import VideosLoading from "../loading/VideosLoading";
 import VideoPopup from "./VideoPopup";
 import { AiFillPlayCircle } from "react-icons/ai";
 import VideoFallback from "@/assets/no-video.jpg";
+import VideoImage from "./VideoImage";
 
 export default function Videos({
   vidData,
@@ -15,7 +16,6 @@ export default function Videos({
   vidData: VideoType | undefined;
   loading: boolean;
 }) {
-  const [img, setImg] = useState<boolean>(true);
   const [show, setShow] = useState<boolean>(false);
   const [videoId, setVideoId] = useState<string | null>(null);
 
@@ -43,20 +43,7 @@ export default function Videos({
                 }}
               >
                 <div className="relative w-[180px] h-[100px] border-[1px] rounded-lg flex items-center justify-center">
-                  <Image
-                    src={
-                      video.key === undefined || null
-                        ? VideoFallback
-                        : `https://img.youtube.com/vi/${video.key}/mqdefault.jpg`
-                    }
-                    fill
-                    alt="video thumbnail picture"
-                    className={`object-cover rounded-lg bg-gray-500${
-                      img ? "bg-gray-500 animate-pulse" : ""
-                    }`}
-                    loading="lazy"
-                    onLoadingComplete={() => setImg(false)}
-                  />
+                  <VideoImage videoKey={video?.key} key={video?.id} />
                   <div className="absolute">
                     <AiFillPlayCircle
                       size={40}
