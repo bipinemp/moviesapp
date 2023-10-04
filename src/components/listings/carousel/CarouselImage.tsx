@@ -3,6 +3,7 @@
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import PosterFallback from "@/assets/no-poster.png";
 
 export default function CarouselImage({
   posterUrl,
@@ -17,11 +18,17 @@ export default function CarouselImage({
   media: string;
   rating?: number;
 }) {
+  const handleClick = () => {};
   return (
     <>
       <Link href={`/${mediaType || media}/${id}`}>
         <Image
-          src={posterUrl}
+          onClick={handleClick}
+          src={
+            posterUrl === undefined || posterUrl === null
+              ? PosterFallback
+              : posterUrl
+          }
           alt="movie_tvshow_poster"
           width={150}
           height={200}

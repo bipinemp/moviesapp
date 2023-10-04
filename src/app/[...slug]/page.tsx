@@ -103,6 +103,7 @@ export default function Page({
     formattedRuntime = formatRuntime(data?.runtime);
   }
 
+  console.log(data?.poster_path);
   return (
     <Container>
       <div className="flex flex-col gap-10 mb-10">
@@ -111,9 +112,9 @@ export default function Page({
           <div className="relative w-[240px] h-[350px] lg:h-auto foot:w-[300px] emd:w-[32%] rounded-lg">
             <Image
               src={
-                data?.poster_path !== null
-                  ? `${image}/${data?.poster_path}`
-                  : PosterFallback
+                data?.poster_path === undefined || data?.poster_path === null
+                  ? PosterFallback
+                  : `${image}/${data?.poster_path}`
               }
               alt="poster image"
               fill
