@@ -9,7 +9,11 @@ export default function CastImage({ profile }: { profile: string }) {
   const [img, setImg] = useState<boolean>(true);
   return (
     <Image
-      src={profile !== null ? `${image}/${profile}` : FallbackAvatar}
+      src={
+        profile === undefined || profile === null
+          ? FallbackAvatar
+          : `${image}/${profile}`
+      }
       fill
       alt="cast picture"
       className={`object-cover object-top rounded-[50%] bg-gray-500 ${
