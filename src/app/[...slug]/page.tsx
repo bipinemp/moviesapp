@@ -118,10 +118,7 @@ export default function Page({
               alt="poster image"
               fill
               loading="lazy"
-              className={`object-fill rounded-lg ${
-                img ? "bg-gray-500 animate-pulse" : ""
-              }`}
-              onLoadingComplete={() => setImg(false)}
+              className="rounded-lg bg-gray-500"
             />
           </div>
 

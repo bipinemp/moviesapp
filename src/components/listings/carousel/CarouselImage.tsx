@@ -34,8 +34,8 @@ export default function CarouselImage({
           height={200}
           className="rounded-lg cursor-pointer min-h-[230px] opacity-90 bg-gray-600"
         />
-        <div className="w-9 sm:w-12 absolute bottom-2 transition duration-200 -left-1 border-[2px] border-white rounded-full">
-          {rating ? (
+        {rating ? (
+          <div className="w-9 sm:w-12 absolute bottom-2 transition duration-200 -left-1 border-[2px] border-white rounded-full">
             <CircularProgressbar
               value={rating}
               maxValue={10}
@@ -51,8 +51,8 @@ export default function CarouselImage({
                 trailColor: "transparent",
               })}
             />
-          ) : null}
-        </div>
+          </div>
+        ) : null}
       </Link>
     </>
   );

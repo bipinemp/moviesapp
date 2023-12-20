@@ -47,7 +47,6 @@ const ExploreData = ({
     { id: 11, value: "runtime.desc", label: "Longest Runtime" },
   ];
 
-  const [img, setImg] = useState<boolean>(true);
   const lastMovieRef = useRef(null);
 
   const { ref, entry } = useIntersection({
@@ -163,13 +162,10 @@ const ExploreData = ({
                             : PosterFallback
                         }
                         width={150}
-                        height={200}
+                        height={226}
                         alt="movie poster"
-                        className={`mb-5 rounded-lg bg-gray-500 hover:opacity-70 ${
-                          img ? "bg-gray-500 animate-pulse" : ""
-                        }`}
+                        className="mb-5 rounded-lg bg-gray-500 hover:opacity-70"
                         loading="lazy"
-                        onLoadingComplete={() => setImg(false)}
                         quality={20}
                       />
                       <div className="w-9 sm:w-12 absolute bottom-2 transition duration-200 border-[2px] border-white rounded-full">
